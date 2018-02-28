@@ -1,5 +1,9 @@
 @import "../../_variables.scss";
 
+h1{
+  margin: 40px 0;
+}
+
 .main-container {
   width: 100%;
   min-height: calc(100vh - 130px);
@@ -9,7 +13,7 @@
 
 .trip-card {
   width: 30%;
-  height: 100%;
+  height: 300px;
   vertical-align: top;
   display: inline-block;
   background: $grey5;
@@ -22,8 +26,11 @@
       object-fit: cover;
     }
   }
+  .card-data{
+    padding: 20px;
+  }
 }
 
 .trip-card:nth-child(odd){
-  margin: 0 20px;
+  margin: 0 4.5%;
 }

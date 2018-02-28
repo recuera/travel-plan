@@ -4,14 +4,20 @@
     <div class="card-img" >
       <img src="{{t.img}}" alt="">
     </div>
-    <h3>
-      {{t.city.name}}
-    </h3>
+    <div class="card-data">
+        <h3>
+            {{t.city.name}}
+        </h3>
+        <p>{{t.dates[0] | date : "d MMM" }} - {{t.dates[t.dates.length -1] | date : "d MMM, y"}}</p>
+    </div>
+
   </div>
   <div class="trip-card">
-    <h1>+</h1>
-    <h3>
-      New Trip!
-    </h3>
+    <div class="card-data">
+      <h1>+</h1>
+      <h3>
+        New Trip!
+      </h3>
+    </div>
   </div>
 </div>
