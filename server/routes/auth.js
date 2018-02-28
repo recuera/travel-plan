@@ -13,7 +13,7 @@ let loginPromise = (req, user) => {
 
 /* SIGNUP */
 router.post('/signup', (req, res, next) => {
-  const {username,password} = req.body;
+  const {username,password,name} = req.body;
   if (!username || !password) return res.status(400).json({ message: 'Provide username and password' })
   User.findOne({ username }, '_id')
     .then(foundUser =>{
@@ -22,7 +22,8 @@ router.post('/signup', (req, res, next) => {
       const hashPass = bcrypt.hashSync(password, salt);
       const theUser = new User({
         username,
-        password: hashPass
+        password: hashPass,
+        name
       });
       return theUser.save()
           .then(user => loginPromise(req,user))

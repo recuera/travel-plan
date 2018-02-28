@@ -1,0 +1,23 @@
+@import "../../_variables.scss";
+.topbar{
+  width: 100%;
+  height: 50px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: $primary;
+  color: $white;
+  padding: 0 20px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  a{
+    color: $white;
+    text-decoration: none;
+  }
+  a:hover{
+    cursor: pointer;
+    border-bottom: 2px solid $white; 
+  }
+}
