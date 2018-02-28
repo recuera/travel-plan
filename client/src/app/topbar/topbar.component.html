@@ -1,7 +1,7 @@
 <div class="topbar">
   <div class="brand">travello</div>
   <div class="menu" *ngIf="!session.getUser()">
-    <a [routerLink]="['login']">Login</a> | <a [routerLink]="['signup']">Signup</a>
+    <a [routerLink]="['auth/login']">Login</a> | <a [routerLink]="['auth/signup']">Signup</a>
   </div>
   <div class="menu" *ngIf="session.getUser()">
       <span>Hello Fulanita!</span> | <a (click)="logout()">Logout</a>

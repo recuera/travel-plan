@@ -5,8 +5,7 @@ import { TripsListComponent } from "./trips-list/trips-list.component";
 
 export const routes: Routes = [
   {path: "" , component: IntroComponent },
-  {path: "login" , component: LoginSignupComponent },
-  {path: "signup" , component: LoginSignupComponent },
+  {path: "auth/:case" , component: LoginSignupComponent },
   {path: "trips" , component: TripsListComponent },
   { path: "**", redirectTo: ""}
 ]

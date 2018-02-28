@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SessionService } from '../../services/session.service';
-import { Router } from '@angular/router';
+import {  ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-signup',
@@ -12,9 +12,21 @@ export class LoginSignupComponent implements OnInit {
   username:string;
   password:string;
   error:string;
-  constructor(public session:SessionService, public router:Router) { }
+  isLogin:boolean = true;
+  constructor(public session:SessionService, public router:Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.route
+      .params
+      .subscribe(params => {
+        console.log(params['case'] == "signup")
+        if(params['case'] == "signup"){
+          this.isLogin = false ;
+        }
+        else{
+          this.isLogin = true ;
+        }
+      });
   }
 
   login(){

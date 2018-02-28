@@ -1,15 +1,22 @@
-<h1> Authentication Sample </h1>
 <div *ngIf="!session.getUser()">
   <form>
-    <h2> Login or Signup </h2>
-    <label> Username </label>
-    <input type="text" [(ngModel)]="username" name="username"/>
-    <br>
-    <label> Password </label>
-    <input type="password" [(ngModel)]="password" name="password"/>
+    <h2 *ngIf="isLogin"> Login </h2>
+    <h2 *ngIf="!isLogin"> Signup </h2>
     <div>
-      <button (click)="login()"> login </button>
-      <button (click)="signup()"> signup </button>
+      <label> Email </label>
+      <input type="text" [(ngModel)]="username" name="username"/>
+    </div>
+    <div>
+      <label> Password </label>  
+      <input type="password" [(ngModel)]="password" name="password"/>
+    </div>
+    <div *ngIf="!isLogin">
+      <label> Name </label>
+      <input type="password" [(ngModel)]="name" name="name"/>
+    </div>
+    <div>
+      <button *ngIf="isLogin" (click)="login()"> login </button>
+      <button *ngIf="!isLogin" (click)="signup()"> signup </button>
     </div>
   </form>
   <p *ngIf="error" class="error"> {{ error }} </p>
