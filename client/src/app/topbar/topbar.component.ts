@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SessionService } from '../../services/session.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-topbar',
@@ -8,7 +9,10 @@ import { SessionService } from '../../services/session.service';
 })
 export class TopbarComponent implements OnInit {
 
-  constructor(public session: SessionService) { }
+  constructor(
+    public session: SessionService, 
+    public router:Router
+  ) { }
   error;
   ngOnInit() {
   }
@@ -16,7 +20,7 @@ export class TopbarComponent implements OnInit {
   logout(){
     this.session.logout()
     .catch(e => this.error = e)
-    .subscribe();
+    .subscribe(() => this.router.navigate(['']));
   }
 
 }

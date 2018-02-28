@@ -11,6 +11,7 @@ export class LoginSignupComponent implements OnInit {
 
   username:string;
   password:string;
+  name:string;
   error:string;
   isLogin:boolean = true;
   constructor(public session:SessionService, public router:Router, private route: ActivatedRoute) { }
@@ -40,11 +41,11 @@ export class LoginSignupComponent implements OnInit {
   }
 
   signup(){
-    this.session.signup(this.username,this.password)
+    this.session.signup(this.username,this.password, this.name)
     .catch(e => this.error = e)
     .subscribe(user => {
       console.log(`Welcome ${user.username}`);
-      this.router.navigate(['trips'])
+      this.router.navigate(['auth/login'])
       });
   }
 

@@ -14,7 +14,7 @@ let loginPromise = (req, user) => {
 /* SIGNUP */
 router.post('/signup', (req, res, next) => {
   const {username,password,name} = req.body;
-  if (!username || !password) return res.status(400).json({ message: 'Provide username and password' })
+  if (!username || !password || !name) return res.status(400).json({ message: 'Please,fill all the inputs' })
   User.findOne({ username }, '_id')
     .then(foundUser =>{
       if (foundUser) return res.status(400).json({ message: 'The username already exists' });
