@@ -1,6 +1,17 @@
 <div class="main-container">
   <h1>Your trips</h1>
   <div class="trip-card" *ngFor="let t of trips">
-    {{t.city.name}}
+    <div class="card-img" >
+      <img src="{{t.img}}" alt="">
+    </div>
+    <h3>
+      {{t.city.name}}
+    </h3>
+  </div>
+  <div class="trip-card">
+    <h1>+</h1>
+    <h3>
+      New Trip!
+    </h3>
   </div>
 </div>
