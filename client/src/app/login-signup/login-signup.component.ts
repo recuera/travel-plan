@@ -35,7 +35,9 @@ export class LoginSignupComponent implements OnInit {
     .catch(e => this.error = e)
     .subscribe(user => {
       console.log(`Welcome ${user.username}`);
-      this.router.navigate(['trips'])
+      if(this.session.getUser()){
+        this.router.navigate(['trips'])
+      }
       }
     );
   }
