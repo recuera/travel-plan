@@ -3,17 +3,14 @@ import { Http, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { Observable } from 'rxjs/Rx';
+import { User } from '../interfaces';
 
-interface User {
-  username:string,
-  password:string
-}
 
 @Injectable()
 export class SessionService {
 
   BASEURL:string = "http://localhost:3000"
-  options:object = {withCredentials:true};
+  options:object = { withCredentials:true };
   constructor(private http: Http) {
     this.isLoggedIn().subscribe();
   }

@@ -9,7 +9,8 @@ const MongoStore = require('connect-mongo')(session);
 const mongoose = require('mongoose');
 const {dbURL} = require('./config');
 const cors = require('cors');
-const auth = require('./routes/auth');
+const auth = require('./routes/api/auth');
+const trips = require('./routes/api/trips');
 
 const app = express();
 
@@ -52,7 +53,13 @@ app.use(session({
 
 require('./passport')(app)
 
+app.use((req,res,next) => {
+  res.locals.user = req.user;
+  next();
+})
+
 app.use('/api/auth', auth);
+app.use('/api/trips', trips);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

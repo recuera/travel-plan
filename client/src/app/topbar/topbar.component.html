@@ -4,6 +4,6 @@
     <a [routerLink]="['auth/login']">Login</a> | <a [routerLink]="['auth/signup']">Signup</a>
   </div>
   <div class="menu" *ngIf="session.getUser()">
-      <span>Hello Fulanita!</span> | <a (click)="logout()">Logout</a>
+      <span>Hello {{session.getUser().name}}!</span> | <a (click)="logout()">Logout</a>
   </div>
 </div>

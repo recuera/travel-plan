@@ -12,6 +12,7 @@ import { IntroComponent } from "./intro/intro.component";
 import { TripsListComponent } from "./trips-list/trips-list.component";
 import { RouterModule } from "@angular/router";
 import { routes } from "./routes";
+import { TripsService } from "../services/trips.service";
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import { routes } from "./routes";
     FormsModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [SessionService],
+  providers: [SessionService, TripsService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
