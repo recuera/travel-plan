@@ -22,11 +22,12 @@ export class PlannerService {
       .catch(this.handleError);
   }
 
-  getVisits(id) {
-    console.log(this.currentPlan)
+  getVisits(tripID, cityID) {
+    console.log("city:" + cityID)
     return this.http
-      .get(`${this.BASE_URL}/api/visits/${this.currentPlan.city.id}`, this.options)
+      .get(`${this.BASE_URL}/api/visits/${cityID}`, this.options)
       .map(res => {
+        console.log(res)
         return res.json();
       })
       .catch(this.handleError);

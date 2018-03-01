@@ -19,13 +19,10 @@ const getDates = function(startDate, endDate) {
 
   
 router.get("/:id", (req, res, next) => {
-  console.log(req.params.id)
-  Visit.find({city_id:req.params.id}).exec((err, visits) => {
-    if (err) {
-      return res.status(500).json(err);
-    }
-    return res.status(200).json(visits);
-  });
+  let cityID = req.params.id
+  Visit.find({"city_id":cityID}).then(visits => {
+    return res.json(visits);
+  }).catch(e => res.json(e));
 });
 
 module.exports = router;

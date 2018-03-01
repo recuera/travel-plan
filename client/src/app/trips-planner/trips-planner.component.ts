@@ -9,6 +9,7 @@ import { PlannerService } from '../../services/planner.service';
 })
 export class TripsPlannerComponent implements OnInit {
   plan;
+  cityID;
   constructor(
     public router: Router,
     public route: ActivatedRoute,
@@ -20,9 +21,10 @@ export class TripsPlannerComponent implements OnInit {
   }
 
   getPlan(id){
-    this.planner.getPlan(id).subscribe( plan => {
-      this.plan = plan;
-      return plan;
+    this.planner.getPlan(id).subscribe( res => {
+      this.plan = res;
+      console.log(res)
+      this.cityID = res.city.id;
     })
   }
 }
