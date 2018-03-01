@@ -21,6 +21,20 @@ export class TripsService {
                       console.log(res.json())
                      return res.json()
                     })
-                    .catch(e => e);
+                    .catch(this.handleError);
+  }
+  newTrip(_author,title,content){
+    let city;
+    let start;
+    let end;
+    return this.http
+    .post(`${this.BASE_URL}/api/trips`, {city,start,end}, this.options)
+    .map(res => res.json())
+    .catch(this.handleError);
+  }
+
+  handleError(e) {
+    console.log(e)
+    return Observable.throw(e.json().message);
   }
 }
