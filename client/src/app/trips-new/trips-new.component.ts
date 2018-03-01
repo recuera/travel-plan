@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./trips-new.component.scss']
 })
 export class TripsNewComponent implements OnInit {
-
+  today;
   countryList = Object.keys(COUNTRIES);
   countryID;
   cityList;
@@ -22,6 +22,7 @@ export class TripsNewComponent implements OnInit {
   constructor(private tripService:TripsService, private router: Router) { }
 
   ngOnInit() {
+    this.today = Date.now
   }
   updateCities(){
     this.cityList = undefined;
