@@ -8,14 +8,6 @@ const moment = require("moment");
 const axios = require("axios");
 const { APIKEY } = require("../../config");
 
-router.get("/", (req, res, next) => {
-  Trip.find({ author_id: res.locals.user._id }).exec((err, trips) => {
-    if (err) {
-      return res.status(500).json(err);
-    }
-    return res.status(200).json(trips);
-  });
-});
 const getDates = function(startDate, endDate) {
   let dates = [];
 
@@ -26,6 +18,16 @@ const getDates = function(startDate, endDate) {
   } while (currDate.add(1, "days").diff(lastDate) < 1);
   return dates;
 };
+
+
+router.get("/", (req, res, next) => {
+  Trip.find({ author_id: res.locals.user._id }).exec((err, trips) => {
+    if (err) {
+      return res.status(500).json(err);
+    }
+    return res.status(200).json(trips);
+  });
+});
 
 router.post("/", (req, res, next) => {
   let dates = [];
@@ -57,7 +59,7 @@ router.post("/", (req, res, next) => {
   Trip.findOne({ "city.id": cityID }, { img: 1, _id: 0 })
     .then(data => {
       console.log(data);
-      if (data.img) {
+      if (data) {
         newTrip.img = data.img;
         saveTrip(newTrip)
       } else {
@@ -69,7 +71,7 @@ router.post("/", (req, res, next) => {
             let imgURL = response.data.data.place.main_media;
 
             if (imgURL != null) {
-              imgURL = response.data.data.place.main_media.media[0].url;
+              imgURL = imgURL.media[0].url;
               newTrip.img = imgURL.replace("media/", "media/800x600/");
             }
             saveTrip(newTrip)
@@ -80,6 +82,15 @@ router.post("/", (req, res, next) => {
       console.log(e);
       return res.json(e);
     });
+});
+
+router.get("/:id", (req, res, next) => {
+  Trip.findById(req.params.id).exec((err, trips) => {
+    if (err) {
+      return res.status(500).json(err);
+    }
+    return res.status(200).json(trips);
+  });
 });
 
 module.exports = router;

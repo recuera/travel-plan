@@ -11,6 +11,7 @@ const {dbURL} = require('./config');
 const cors = require('cors');
 const auth = require('./routes/api/auth');
 const trips = require('./routes/api/trips');
+const visits = require('./routes/api/visits');
 
 const app = express();
 
@@ -60,6 +61,7 @@ app.use((req,res,next) => {
 
 app.use('/api/auth', auth);
 app.use('/api/trips', trips);
+app.use('/api/visits', visits);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
