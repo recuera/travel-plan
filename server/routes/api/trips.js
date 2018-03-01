@@ -28,7 +28,6 @@ const getDates = function(startDate, endDate) {
 };
 
 router.post('/', (req, res, next) => {
-  console.log("authorised")
   let dates = [];
   let countryName = req.body.country
   let countryID = COUNTRIES[countryName];
@@ -36,7 +35,7 @@ router.post('/', (req, res, next) => {
   let cityID = CITIES[countryID][cityName];
   const newTrip = new Trip({
     dates: getDates(req.body.start, req.body.end),
-    author_id: "5a96867d17c0d94ac1e1e6d9", // <-- CAMBIAR ESTO CUANDO TENGA EL SERVICIO
+    author_id: req.user.id,
     city: {
       name:req.body.city,
       id: cityID
@@ -54,7 +53,6 @@ router.post('/', (req, res, next) => {
     
         return res.status(200).json(newTrip);
       });
-     console.log(newTrip)
   })
   .catch(function(e) {
     console.log(e);

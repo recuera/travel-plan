@@ -16,7 +16,6 @@ export class TripsListComponent implements OnInit {
   ) {
     this.tripsService.getTrips().subscribe(res => {
       this.trips = res;
-      console.log(this.trips)
     });
   }
 

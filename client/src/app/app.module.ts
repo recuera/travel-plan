@@ -13,6 +13,7 @@ import { TripsListComponent } from "./trips-list/trips-list.component";
 import { RouterModule } from "@angular/router";
 import { routes } from "./routes";
 import { TripsService } from "../services/trips.service";
+import { TripsNewComponent } from './trips-new/trips-new.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { TripsService } from "../services/trips.service";
     FooterComponent,
     LoginSignupComponent,
     IntroComponent,
-    TripsListComponent
+    TripsListComponent,
+    TripsNewComponent
   ],
   imports: [
     BrowserModule,

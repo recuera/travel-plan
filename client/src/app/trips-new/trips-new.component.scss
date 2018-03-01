@@ -1,0 +1,44 @@
+@import "../../_variables.scss";
+
+h1{
+  margin: 40px 0;
+}
+
+h2{
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.main-container {
+  width: 100%;
+  min-height: calc(100vh - 130px);
+  box-sizing: border-box;
+  padding: 30px 10px;
+}
+
+.form-container{
+  max-width: 400px;
+  margin: 0 auto;
+  background: $grey5;
+  padding: 30px;
+  div,input,button, select{
+    width: 100%;
+    box-sizing: border-box;
+  }
+  div{
+    margin-bottom: 30px;
+  }
+  input,button,select{
+    height: 40px;
+  }
+  label{
+    display: block;
+    margin-bottom: 10px;
+  }
+}
+
+.error{
+  background-color:red;
+  color: $white;
+  padding: 10px;
+}

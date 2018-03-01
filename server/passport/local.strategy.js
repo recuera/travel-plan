@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 
 console.log("Configure local strategy");
 passport.use(new LocalStrategy((username, password, next) => {
-  console.log("REceived userpassword");
+  console.log("Received user-password");
   User.findOne({ username }, (err, foundUser) => {
     if (err) {
       next(err);

@@ -20,7 +20,6 @@ export class LoginSignupComponent implements OnInit {
     this.route
       .params
       .subscribe(params => {
-        console.log(params['case'] == "signup")
         if(params['case'] == "signup"){
           this.isLogin = false ;
         }

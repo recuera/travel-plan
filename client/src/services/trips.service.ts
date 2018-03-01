@@ -18,17 +18,13 @@ export class TripsService {
   getTrips() {
     return this.http.get(`${this.BASE_URL}/api/trips`, this.options)
                     .map(res => {
-                      console.log(res.json())
                      return res.json()
                     })
                     .catch(this.handleError);
   }
-  newTrip(_author,title,content){
-    let city;
-    let start;
-    let end;
+  newTrip(country, city,start,end){
     return this.http
-    .post(`${this.BASE_URL}/api/trips`, {city,start,end}, this.options)
+    .post(`${this.BASE_URL}/api/trips`, {country,city,start,end}, this.options)
     .map(res => res.json())
     .catch(this.handleError);
   }
