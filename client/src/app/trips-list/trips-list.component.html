@@ -1,16 +1,17 @@
 <div class="main-container">
   <h1>Your trips</h1>
   <div class="trip-card" *ngFor="let t of trips">
-    <div class="card-img" >
-      <img src="{{t.img}}" alt="">
-    </div>
-    <div class="card-data">
+    <a [routerLink]="[t._id]">
+      <div class="card-img">
+        <img src="{{t.img}}" alt="">
+      </div>
+      <div class="card-data">
         <h3>
-            {{t.city.name}}
+          {{t.city.name}}
         </h3>
         <p>{{t.dates[0] | date : "d MMM" }} - {{t.dates[t.dates.length -1] | date : "d MMM, y"}}</p>
-    </div>
-
+      </div>
+    </a>
   </div>
   <div class="trip-card">
     <div class="card-data">

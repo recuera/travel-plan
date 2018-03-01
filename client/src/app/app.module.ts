@@ -14,6 +14,9 @@ import { RouterModule } from "@angular/router";
 import { routes } from "./routes";
 import { TripsService } from "../services/trips.service";
 import { TripsNewComponent } from './trips-new/trips-new.component';
+import { TripsPlannerComponent } from './trips-planner/trips-planner.component';
+import { PlannerService } from "../services/planner.service";
+import { VisitListComponent } from './visit-list/visit-list.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,9 @@ import { TripsNewComponent } from './trips-new/trips-new.component';
     LoginSignupComponent,
     IntroComponent,
     TripsListComponent,
-    TripsNewComponent
+    TripsNewComponent,
+    TripsPlannerComponent,
+    VisitListComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +36,11 @@ import { TripsNewComponent } from './trips-new/trips-new.component';
     FormsModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [SessionService, TripsService],
+  providers: [
+    SessionService, 
+    TripsService,
+    PlannerService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
