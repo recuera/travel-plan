@@ -34,7 +34,6 @@ router.post('/', (req, res, next) => {
   let countryID = COUNTRIES[countryName];
   let cityName = req.body.city;
   let cityID = CITIES[countryID][cityName];
-  console.log(cityID)
   const newTrip = new Trip({
     dates: getDates(req.body.start, req.body.end),
     author_id: "5a96867d17c0d94ac1e1e6d9", // <-- CAMBIAR ESTO CUANDO TENGA EL SERVICIO
@@ -43,27 +42,23 @@ router.post('/', (req, res, next) => {
       id: cityID
     }
   });
-  // axios
-  // .get(`https://api.sygictravelapi.com/1.0/en/places/city:${Cities[cityName].id}`, { 'headers': { 'x-api-key': APIKEY } })
-  // .then(function(response) {
-  //   if(!response.data){
-  //     next();
-  //   } else {
-  //     console.log(response.data)
-  //   }
-  // })
-  // .catch(function(error) {
-  //   console.log(error);
-  // });
-
-
-  
-  console.log(newTrip)
-  newTrip.save((err) => {
-    if (err)              { return res.status(500).json(err); }
-    if (newTrip.errors) { return res.status(400).json(newTrip); }
-
-    return res.status(200).json(newTrip);
+  axios
+  .get(`https://api.sygictravelapi.com/1.0/en/places/city:${cityID}`, { 'headers': { 'x-api-key': APIKEY } })
+  .then(function(response) {
+    if(response.data.data.place.main_media.media[0].url){
+      newTrip.img = response.data.data.place.main_media.media[0].url
+    }
+      newTrip.save((err) => {
+        if (err)              { return res.status(500).json(err); }
+        if (newTrip.errors) { return res.status(400).json(newTrip); }
+    
+        return res.status(200).json(newTrip);
+      });
+     console.log(newTrip)
+  })
+  .catch(function(e) {
+    console.log(e);
+    return res.json(e)
   });
 });
 
