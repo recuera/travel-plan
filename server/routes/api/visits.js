@@ -22,8 +22,9 @@ router.put("/save", (req, res, next) => {
 })
   
 router.get("/:id", (req, res, next) => {
-  let cityID = req.params.id
-  Visit.find({"city_id":cityID}).then(visits => {
+  let tripID = req.params.id
+  TripVisit.find({"trip_id":tripID}).populate({ path: "visit_id" }).then(visits => {
+    console.log(visits)
     return res.json(visits);
   }).catch(e => res.json(e));
 });

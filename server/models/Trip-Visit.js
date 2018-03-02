@@ -9,7 +9,7 @@ const tripVisitSchema = new Schema(
     },
     trip_id: { 
       type: Schema.Types.ObjectId, 
-      ref: "Visit" 
+      ref: "Trip" 
     },
     day_pos: { 
       type: Number, 

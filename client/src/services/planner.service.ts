@@ -23,7 +23,7 @@ export class PlannerService {
 
   getVisits(tripID, cityID) {
     return this.http
-      .get(`${this.BASE_URL}/api/visits/${cityID}`, this.options)
+      .get(`${this.BASE_URL}/api/visits/${tripID}`, this.options)
       .map(res => {
         return res.json();
       })
@@ -32,14 +32,13 @@ export class PlannerService {
 
   updateTripVisit(tripID, visitID, dayPos){
     console.log(tripID, visitID, dayPos)
-    console.log("VOY A HACER POST")
     return this.http
      .put(`http://localhost:3000/api/visits/save`, {tripID, visitID, dayPos}, this.options)
-      // .map(res => {
-      //   console.log(res)
-      //   return res.json();
-      // })
-      // .catch(this.handleError);
+      .map(res => {
+        console.log(res)
+        return res.json();
+      })
+      .catch(this.handleError);
   }
 
   handleError(e) {
