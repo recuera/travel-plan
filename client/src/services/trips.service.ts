@@ -22,7 +22,7 @@ export class TripsService {
                     })
                     .catch(this.handleError);
   }
-  
+
   newTrip(country, city,start,end){
     return this.http
     .post(`${this.BASE_URL}/api/trips`, {country,city,start,end}, this.options)

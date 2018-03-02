@@ -30,11 +30,14 @@ router.get("/", (req, res, next) => {
 });
 
 router.post("/", (req, res, next) => {
+  
   let dates = [];
   let countryName = req.body.country;
   let countryID = COUNTRIES[countryName];
   let cityName = req.body.city;
   let cityID = CITIES[countryID][cityName];
+  //console.log(CITIES[countryID])
+  console.log(req.body)
   const newTrip = new Trip({
     dates: getDates(req.body.start, req.body.end),
     author_id: req.user.id,
@@ -58,10 +61,13 @@ router.post("/", (req, res, next) => {
 
   Trip.findOne({ "city.id": cityID }, { img: 1, _id: 0 })
     .then(data => {
+      console.log(data)
+      console.log(cityID)
       if (data) {
         newTrip.img = data.img;
         saveTrip(newTrip)
       } else {
+        console.log("ADIOS")
         axios
           .get(`https://api.sygictravelapi.com/1.0/en/places/city:${cityID}`, {
             headers: { "x-api-key": APIKEY }
@@ -74,7 +80,10 @@ router.post("/", (req, res, next) => {
               newTrip.img = imgURL.replace("media/", "media/800x600/");
             }
             saveTrip(newTrip)
-          });
+          }).catch(function(e) {
+            console.log(e);
+            return res.json(e);
+          });;
       }
     })
     .catch(function(e) {

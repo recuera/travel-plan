@@ -33,6 +33,11 @@ h2{
   overflow: auto;
   white-space: nowrap;
 }
+app-visit-list{
+  display: block;
+  min-height: 100px;
+  border: 1px solid $primary;
+}
 app-visit-day {
   border: 10px solid #fff;
   display: inline-block;
@@ -41,4 +46,6 @@ app-visit-day {
   min-height: calc(100vh - 190px);
   margin: 10px;
   background: $grey5;
+  box-sizing: border-box;
+  padding: 10px;
 }

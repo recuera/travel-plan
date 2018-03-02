@@ -4,6 +4,6 @@
     <app-visit-list [cityID]="cityID" [dragula]='"drag-container"'></app-visit-list>
   </div>
   <div class="visit-timeline">
-    <app-visit-day *ngFor="let d of plan.dates" [day]="d" [dragula]='"drag-container"'></app-visit-day>
+    <app-visit-day *ngFor="let d of plan.dates" [day]="d" ></app-visit-day>
   </div>
 </div>
