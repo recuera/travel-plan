@@ -29,6 +29,19 @@ export class PlannerService {
       })
       .catch(this.handleError);
   }
+
+  updateTripVisit(tripID, visitID, dayPos){
+    console.log(tripID, visitID, dayPos)
+    console.log("VOY A HACER POST")
+    return this.http
+     .put(`http://localhost:3000/api/visits/save`, {tripID, visitID, dayPos}, this.options)
+      // .map(res => {
+      //   console.log(res)
+      //   return res.json();
+      // })
+      // .catch(this.handleError);
+  }
+
   handleError(e) {
     console.log(e);
     return Observable.throw(e.json().message);

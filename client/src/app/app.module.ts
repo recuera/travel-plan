@@ -43,7 +43,7 @@ import {DragulaModule, DragulaService} from 'ng2-dragula/ng2-dragula';
   providers: [
     SessionService, 
     TripsService,
-    PlannerService
+    PlannerService,
   ],
   bootstrap: [AppComponent]
 })
