@@ -1,7 +1,6 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-
 import { AppComponent } from "./app.component";
 import { TopbarComponent } from "./topbar/topbar.component";
 import { FooterComponent } from "./footer/footer.component";
@@ -18,6 +17,8 @@ import { TripsPlannerComponent } from './trips-planner/trips-planner.component';
 import { PlannerService } from "../services/planner.service";
 import { VisitListComponent } from './visit-list/visit-list.component';
 import { VisitDayComponent } from './visit-day/visit-day.component';
+import {DragulaModule, DragulaService} from 'ng2-dragula/ng2-dragula';
+
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { VisitDayComponent } from './visit-day/visit-day.component';
     BrowserModule,
     HttpModule,
     FormsModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    DragulaModule
   ],
   providers: [
     SessionService, 

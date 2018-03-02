@@ -27,8 +27,6 @@ export class VisitListComponent implements OnInit {
   @Input()
   set cityID(cityID: number) {
     this._cityID = cityID;
-
-    console.log("on set")
     this.getVisits()
   }
 
@@ -38,9 +36,7 @@ export class VisitListComponent implements OnInit {
 
   getVisits(){
     this.route.params.subscribe( params => {
-      this.planner.getVisits(params["id"],this.cityID).subscribe( res => {this.visits = res
-      console.log(this.visits)
-    })})
+      this.planner.getVisits(params["id"],this.cityID).subscribe( res => this.visits = res)})
   }
 
 }

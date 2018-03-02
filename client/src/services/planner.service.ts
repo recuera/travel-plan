@@ -16,18 +16,15 @@ export class PlannerService {
       .get(`${this.BASE_URL}/api/trips/${id}`, this.options)
       .map(res => {
         this.currentPlan = res.json();
-        console.log(res.json())
         return res.json();
       })
       .catch(this.handleError);
   }
 
   getVisits(tripID, cityID) {
-    console.log("city:" + cityID)
     return this.http
       .get(`${this.BASE_URL}/api/visits/${cityID}`, this.options)
       .map(res => {
-        console.log(res)
         return res.json();
       })
       .catch(this.handleError);

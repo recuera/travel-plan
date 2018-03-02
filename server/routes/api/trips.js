@@ -58,7 +58,6 @@ router.post("/", (req, res, next) => {
 
   Trip.findOne({ "city.id": cityID }, { img: 1, _id: 0 })
     .then(data => {
-      console.log(data);
       if (data) {
         newTrip.img = data.img;
         saveTrip(newTrip)

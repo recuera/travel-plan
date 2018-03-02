@@ -23,7 +23,6 @@ export class TripsPlannerComponent implements OnInit {
   getPlan(id){
     this.planner.getPlan(id).subscribe( res => {
       this.plan = res;
-      console.log(res)
       this.cityID = res.city.id;
     })
   }

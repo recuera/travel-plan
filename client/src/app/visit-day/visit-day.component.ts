@@ -26,7 +26,6 @@ export class VisitDayComponent implements OnInit {
   @Input()
   set day(day: Date) {
     this._day = day;
-    console.log(day)
   }
 
   ngOnInit() {
@@ -34,8 +33,6 @@ export class VisitDayComponent implements OnInit {
 
   getVisits(){
     this.route.params.subscribe( params => {
-      this.planner.getVisits(params["id"],this.day).subscribe( res => {this.visits = res
-      console.log(this.visits)
-    })})
+      this.planner.getVisits(params["id"],this.day).subscribe( res => this.visits = res)})
   }
 }
