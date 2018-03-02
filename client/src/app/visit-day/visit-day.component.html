@@ -1,4 +1,3 @@
-<h3>{{day | date: "EEE d"}}</h3>
-<div class="day-timeline" [dragula]='"drag-container"'>
-
+<h3>{{day.day | date: "EEE d"}}</h3>
+<div class="day-timeline" [dragula]='"drag-container"' [dragulaModel]='visits' [id]="day.index">
 </div>

@@ -10,6 +10,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class VisitListComponent implements OnInit {
   
   visits
+  item
 
   private _cityID = 0;
   
