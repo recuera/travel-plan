@@ -10,7 +10,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class VisitListComponent implements OnInit {
   
   visits
-  //@Input() cityID: number;
+
   private _cityID = 0;
   
   constructor( 
@@ -32,19 +32,12 @@ export class VisitListComponent implements OnInit {
     this.getVisits()
   }
 
-
-
-
   ngOnInit() {
-    console.log("on init")
-    console.log(this.cityID);
-    console.log(this._cityID);
 
   }
 
   getVisits(){
     this.route.params.subscribe( params => {
-      //setTimeout(() => console.log(this.cityID), 1000)
       this.planner.getVisits(params["id"],this.cityID).subscribe( res => {this.visits = res
       console.log(this.visits)
     })})

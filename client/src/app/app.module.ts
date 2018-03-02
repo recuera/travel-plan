@@ -17,6 +17,7 @@ import { TripsNewComponent } from './trips-new/trips-new.component';
 import { TripsPlannerComponent } from './trips-planner/trips-planner.component';
 import { PlannerService } from "../services/planner.service";
 import { VisitListComponent } from './visit-list/visit-list.component';
+import { VisitDayComponent } from './visit-day/visit-day.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { VisitListComponent } from './visit-list/visit-list.component';
     TripsListComponent,
     TripsNewComponent,
     TripsPlannerComponent,
-    VisitListComponent
+    VisitListComponent,
+    VisitDayComponent
   ],
   imports: [
     BrowserModule,

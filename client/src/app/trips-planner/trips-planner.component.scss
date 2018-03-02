@@ -1,20 +1,43 @@
 @import "../../_variables.scss";
 
-
 .main-container {
   width: 100%;
   min-height: calc(100vh - 130px);
   box-sizing: border-box;
   padding: 0;
-  display: table;
-  div{
-    display: table-cell;
-    padding: 10px;
-  }
+  overflow: hidden;
 }
 
-.visit-search{
+h2{
+  text-align: center;
+  margin: 20px 0;
+}
+
+.visit-search {
+  display: table;
+  float: left;
+  padding: 10px;
   width: 300px;
-  background-color: $grey5;
+  background-color: $grey4;
+  min-height: calc(100vh - 130px);
+  box-sizing: border-box;
+}
+
+.visit-timeline {
+  box-sizing: border-box;
+  min-height: calc(100vh - 150px);
   height: 100%;
+  float: left;
+  margin: 10px;
+  width: calc(100vw - 320px);
+  overflow: auto;
+  white-space: nowrap;
+}
+app-visit-day {
+  border: 10px solid #fff;
+  display: inline-block;
+  min-width: 200px;
+  min-height: calc(100vh - 190px);
+  margin: 10px;
+  background: $grey5;
 }

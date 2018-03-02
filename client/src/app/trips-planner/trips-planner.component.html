@@ -1,9 +1,9 @@
-<div class="main-container">
+<div class="main-container" *ngIf="plan">
   <div class="visit-search">
-    <h2 *ngIf="plan">{{plan.city.name}}</h2>
+    <h2>{{plan.city.name}} - {{plan.dates[0] | date: "MMM yyyy" }}</h2>
     <app-visit-list [cityID]="cityID"></app-visit-list>
   </div>
   <div class="visit-timeline">
-    TIMELINE
+    <app-visit-day *ngFor="let d of plan.dates" [day]="d"></app-visit-day>
   </div>
 </div>
