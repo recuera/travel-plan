@@ -43,5 +43,9 @@ export class VisitListComponent implements OnInit {
       })
     })
   }
+  getHeight(seconds){
+    console.log(seconds)
+    return ((seconds / 3600) * 40) + "px"
+  }
 
 }

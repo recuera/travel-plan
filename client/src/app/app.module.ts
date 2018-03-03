@@ -18,6 +18,7 @@ import { PlannerService } from "../services/planner.service";
 import { VisitListComponent } from './visit-list/visit-list.component';
 import { VisitDayComponent } from './visit-day/visit-day.component';
 import {DragulaModule, DragulaService} from 'ng2-dragula/ng2-dragula';
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import {DragulaModule, DragulaService} from 'ng2-dragula/ng2-dragula';
     VisitDayComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     HttpModule,
     FormsModule,

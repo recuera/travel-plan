@@ -41,7 +41,7 @@ export class TripsPlannerComponent implements OnInit {
     this.route.params.subscribe( params => {
       this.tripID = params["id"];
       this.getPlan(this.tripID)
-  })
+    })
   }
 
   getPlan(id){
@@ -49,10 +49,11 @@ export class TripsPlannerComponent implements OnInit {
       this.plan = res;
       this.cityID = res.city.id;
     })
-    console.log(this.items)
   }
   private onDrag(args) {
     let [e, el] = args;
+    console.log(this.plan)
+
   }
   
   private onDrop(args) {

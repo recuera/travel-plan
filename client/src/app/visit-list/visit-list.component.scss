@@ -1,8 +1,10 @@
 @import "../../_variables.scss";
 .visit{
+  display: flex;
+  align-items: center;
   background: $primary;
   margin: 20px 10px;
-  padding: 5px 10px;
+  padding: 0 10px;
   color: $white;
   min-height: 30px;
   line-height: 30px;
