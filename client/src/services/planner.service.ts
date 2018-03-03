@@ -22,7 +22,6 @@ export class PlannerService {
   }
 
   getVisits(tripID, dayPos) {
-    console.log(dayPos)
     return this.http
       .get(`${this.BASE_URL}/api/visits/${tripID}/${dayPos}`, this.options)
       .map(res => {
