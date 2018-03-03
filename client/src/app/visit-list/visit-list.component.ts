@@ -43,8 +43,10 @@ export class VisitListComponent implements OnInit {
       })
     })
   }
+  deleteVisit(id){
+    console.log(`Delete visit ${id}`)
+  }
   getHeight(seconds){
-    console.log(seconds)
     return ((seconds / 3600) * 40) + "px"
   }
 

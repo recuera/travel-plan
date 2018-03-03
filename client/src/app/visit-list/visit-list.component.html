@@ -1,3 +1,3 @@
 <div *ngFor="let v of visits" [id]="v._id" class="visit visit-list" [style.height]="getHeight(v.visit_id.duration)" >
-  <p >{{v.visit_id.title}} - {{v.visit_id.duration / 3600}}h</p>
+  <span>{{v.visit_id.title}} - {{v.visit_id.duration / 3600}}h </span> <a (click)="deleteVisit(v._id)">X</a>
 </div>

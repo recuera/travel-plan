@@ -21,6 +21,7 @@ h2{
   background-color: $white;
   min-height: calc(100vh - 130px);
   box-sizing: border-box;
+  border-right: 1px solid $primary-tp1;
 }
 
 .visit-timeline {
