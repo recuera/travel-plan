@@ -57,6 +57,7 @@ export class TripsPlannerComponent implements OnInit {
   
   private onDrop(args) {
     let [e, el] = args;
+    console.log(e)
     this.planner.updateTripVisit(this.tripID,e.id,el.id).subscribe();
   }
   

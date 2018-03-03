@@ -33,7 +33,7 @@ export class PlannerService {
   updateTripVisit(tripID, visitID, dayPos){
     console.log(tripID, visitID, dayPos)
     return this.http
-     .put(`http://localhost:3000/api/visits/save`, {tripID, visitID, dayPos}, this.options)
+     .put(`${this.BASE_URL}/api/visits/save`, {visitID, dayPos}, this.options)
       .map(res => {
         console.log(res)
         return res.json();

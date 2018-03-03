@@ -8,12 +8,13 @@ const { APIKEY } = require("../../config");
 
 
 router.put("/save", (req, res, next) => {
+  console.log("SAVE")
   console.log(req.body)
   const updateVisit = {
     day_pos: req.body.dayPos
   };
 
-  TripVisit.findOneAndUpdate({"visit_id":req.body.visitID, "trip_id": req.body.tripID}, updateVisit,(e, visit) => {
+  TripVisit.findByIdAndUpdate(req.body.visitID, updateVisit,(e, visit) => {
     if (e) {
       return res.json(e);
     }
