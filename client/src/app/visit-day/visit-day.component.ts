@@ -31,8 +31,4 @@ export class VisitDayComponent implements OnInit {
   ngOnInit() {
   }
 
-  getVisits(){
-    this.route.params.subscribe( params => {
-      this.planner.getVisits(params["id"],this.day).subscribe( res => this.visits = res)})
-  }
 }

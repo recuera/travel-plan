@@ -21,9 +21,10 @@ export class PlannerService {
       .catch(this.handleError);
   }
 
-  getVisits(tripID, cityID) {
+  getVisits(tripID, dayPos) {
+    console.log(dayPos)
     return this.http
-      .get(`${this.BASE_URL}/api/visits/${tripID}`, this.options)
+      .get(`${this.BASE_URL}/api/visits/${tripID}/${dayPos}`, this.options)
       .map(res => {
         return res.json();
       })

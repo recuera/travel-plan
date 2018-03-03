@@ -11,8 +11,9 @@ export class VisitListComponent implements OnInit {
   
   visits
   item
+  
 
-  private _cityID = 0;
+  private _dayPos = 0;
   
   constructor( 
     public planner: PlannerService,
@@ -21,23 +22,26 @@ export class VisitListComponent implements OnInit {
   ) { 
 
   }
-  get cityID(): number {
-    return this._cityID
+  get dayPos(): any {
+    return this._dayPos
   }
 
   @Input()
-  set cityID(cityID: number) {
-    this._cityID = cityID;
-    this.getVisits()
+  set dayPos(dayPos) {
+    this._dayPos = dayPos;
   }
 
   ngOnInit() {
-
+    this.getVisits()
   }
 
   getVisits(){
+    console.log(this.dayPos)
     this.route.params.subscribe( params => {
-      this.planner.getVisits(params["id"],this.cityID).subscribe( res => this.visits = res)})
+      this.planner.getVisits(params["id"], this.dayPos.index).subscribe( res => {this.visits = res
+        console.log(this.visits)
+      })
+    })
   }
 
 }

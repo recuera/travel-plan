@@ -36,7 +36,8 @@ h2{
 app-visit-list{
   display: block;
   min-height: 100px;
-  border: 1px solid $primary;
+  border: 1px solid $primary-tp1;
+  background: $primary-tp1;
 }
 app-visit-day {
   display: inline-block;

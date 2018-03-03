@@ -22,9 +22,14 @@ router.put("/save", (req, res, next) => {
   });
 })
   
-router.get("/:id", (req, res, next) => {
+router.get("/:id/:day", (req, res, next) => {
   let tripID = req.params.id
-  TripVisit.find({"trip_id":tripID}).populate({ path: "visit_id" }).then(visits => {
+  let dayPos = -1
+
+  if (req.params.day != "undefined") {
+    dayPos = req.params.day;
+  }
+  TripVisit.find({"trip_id":tripID, day_pos: dayPos}).populate({ path: "visit_id" }).then(visits => {
     console.log(visits)
     return res.json(visits);
   }).catch(e => res.json(e));
