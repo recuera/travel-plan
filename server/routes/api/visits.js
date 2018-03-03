@@ -8,8 +8,6 @@ const { APIKEY } = require("../../config");
 
 
 router.put("/save", (req, res, next) => {
-  console.log("SAVE")
-  console.log(req.body)
   const updateVisit = {
     day_pos: req.body.dayPos
   };
@@ -18,7 +16,6 @@ router.put("/save", (req, res, next) => {
     if (e) {
       return res.json(e);
     }
-    console.log(visit)
   });
 })
   
@@ -30,9 +27,23 @@ router.get("/:id/:day", (req, res, next) => {
     dayPos = req.params.day;
   }
   TripVisit.find({"trip_id":tripID, day_pos: dayPos}).populate({ path: "visit_id" }).then(visits => {
-    console.log(visits)
     return res.json(visits);
   }).catch(e => res.json(e));
 });
+
+router.get("/search/:cityID/:place", (req, res, next) => {
+  let cityID = req.params.cityID;
+  let place = req.params.place;
+  axios.get(`https://api.sygictravelapi.com/1.0/en/places/list?parents=city:${cityID}&query=${place}&limit=3`, {
+            headers: { "x-api-key": APIKEY }
+          }).then(function(response) {
+            console.log(response.data.data.places)
+            return res.json(response.data.data.places)
+          }).catch(function(e) {
+            console.log(e);
+            return res.json(e);
+          });;
+  
+})
 
 module.exports = router;

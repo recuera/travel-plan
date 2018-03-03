@@ -1,9 +1,26 @@
 <div class="main-container" *ngIf="plan">
+  
   <div class="visit-search">
-      <h2>{{plan.city.name}} - {{plan.dates[0] | date: "MMM yyyy" }}</h2>
+    <h2>{{plan.city.name}} - {{plan.dates[0] | date: "MMM yyyy" }}</h2>
+
+    <input type="text" [(ngModel)]="place" placeholder="Search a place to visit" />
+    <button type="button" class="input-btn" (click)="searchPlace()">
+      <i class="fa fa-search"></i>
+    </button>
+
+    <div [dragula]='"drag-container"' [dragulaModel]='visits' class="results" *ngIf="resultPlaces">
+      <div *ngFor="let r of resultPlaces" class="visit" [style.height]="getHeight(r.duration)">
+        <span>{{r.name}} - {{r.duration / 3600}}h</span>
+      </div>
+    </div>
+
+    <h3>Saved Places</h3>
     <app-visit-list [dragula]='"drag-container"' [dragulaModel]='visits' id="-1"></app-visit-list>
+
   </div>
+
   <div class="visit-timeline" [ngStyle]="{ 'background-image': 'url(' + plan.img + ')'}">
-    <app-visit-day *ngFor="let d of plan.dates let i = index" [day]="{day:d, index:i}"  ></app-visit-day>
+    <app-visit-day *ngFor="let d of plan.dates, let i = index" [day]="{day:d, index:i}"></app-visit-day>
   </div>
+
 </div>

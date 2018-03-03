@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PlannerService } from '../../services/planner.service';
 import { DragulaService } from 'ng2-dragula';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-trips-planner',
@@ -13,11 +14,14 @@ export class TripsPlannerComponent implements OnInit {
   cityID;
   items;
   tripID;
+  place:string;
+  resultPlaces: Array<any>;
   constructor(
     public router: Router,
     public route: ActivatedRoute,
     public planner: PlannerService,
-    private dragulaService: DragulaService
+    private dragulaService: DragulaService,
+    public forms: FormsModule
   )  {
     dragulaService.drag.subscribe((value) => {
     //  console.log(`drag: ${value[0]}`);
@@ -50,6 +54,12 @@ export class TripsPlannerComponent implements OnInit {
       this.cityID = res.city.id;
     })
   }
+  searchPlace(){
+    this.planner.searchPlace(this.cityID,this.place).subscribe( res =>{
+      console.log(res)
+      this.resultPlaces = res;
+    });
+  }
   private onDrag(args) {
     let [e, el] = args;
     console.log(this.plan)
@@ -72,4 +82,9 @@ export class TripsPlannerComponent implements OnInit {
     let [e, el, container] = args;
     // do something
   }
+
+  getHeight(seconds){
+    return ((seconds / 3600) * 40) + "px"
+  }
+  
 }

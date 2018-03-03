@@ -41,6 +41,16 @@ export class PlannerService {
       .catch(this.handleError);
   }
 
+  searchPlace(cityID,place){
+    console.log(cityID,place)
+    return this.http
+    .get(`${this.BASE_URL}/api/visits/search/${cityID}/${place}`, this.options)
+      .map(res => {
+        return res.json();
+      })
+      .catch(this.handleError);
+  }
+
   handleError(e) {
     console.log(e);
     return Observable.throw(e.json().message);

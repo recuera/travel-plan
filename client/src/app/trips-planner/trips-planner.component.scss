@@ -8,9 +8,14 @@
   overflow: hidden;
 }
 
-h2{
+h2,h3{
   text-align: center;
   margin: 18px 0;
+}
+
+h3{
+  padding-top: 18px;
+  border-top: 2px solid $primary;
 }
 
 .visit-search {
@@ -57,4 +62,54 @@ app-visit-day {
   box-sizing: border-box;
   padding: 10px;
   box-shadow: 0px 3px 10px 0px rgba(0,0,0,0.3);
+}
+
+input{
+  box-sizing: border-box;
+  height: 37px;
+  width: calc(100% - 40px);
+  margin-bottom: 20px;
+  border: none;
+  border-bottom: 2px solid $primary-tp1;
+  font-size: 14px;
+  padding: 0 5px;
+}
+input:focus{
+  border-color: $primary;
+  outline: none;
+}
+button.input-btn{
+  box-sizing: border-box;
+  width: 40px;
+  height: 40px;
+  background: $primary;
+  border: none;
+  color: $white;
+  font-size: 16px;
+}
+button.input-btn:hover{
+  cursor: pointer;
+}
+
+.visit{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: $primary;
+  margin: 20px 10px;
+  padding: 0 10px;
+  color: $white;
+  min-height: 30px;
+  line-height: 30px;
+  cursor: move;
+  cursor: grab;
+  box-shadow: 0px 3px 10px 0px rgba(0,0,0,0.3);
+  font-size: 14px;
+  a{
+    padding-left: 10px;
+    border-left: 1px solid white;
+  }
+  span{
+    padding-right: 10px;
+  }
 }
