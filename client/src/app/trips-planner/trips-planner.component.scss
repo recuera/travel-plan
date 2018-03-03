@@ -15,23 +15,24 @@ h2,h3{
 
 h3{
   padding-top: 18px;
-  border-top: 2px solid $primary;
+  border-top: 2px solid $grey5;
 }
 
 .visit-search {
-  display: table;
+  display: block;
   float: left;
   padding: 10px 20px;
   width: 300px;
   background-color: $white;
-  min-height: calc(100vh - 130px);
+  max-height: calc(100vh - 130px);
+  overflow: auto;
   box-sizing: border-box;
   border-right: 1px solid $primary-tp1;
 }
 
 .visit-timeline {
   box-sizing: border-box;
-  min-height: calc(100vh - 150px);
+  min-height: calc(100vh - 130px);
   height: 100%;
   float: left;
   padding: 10px;
@@ -66,7 +67,8 @@ app-visit-day {
 
 input{
   box-sizing: border-box;
-  height: 37px;
+  float: left;
+  height: 40px;
   width: calc(100% - 40px);
   margin-bottom: 20px;
   border: none;
@@ -100,7 +102,7 @@ button.input-btn:hover{
   padding: 0 10px;
   color: $white;
   min-height: 30px;
-  line-height: 30px;
+  line-height: 16px;
   cursor: move;
   cursor: grab;
   box-shadow: 0px 3px 10px 0px rgba(0,0,0,0.3);

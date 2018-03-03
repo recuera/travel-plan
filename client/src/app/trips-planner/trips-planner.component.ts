@@ -3,6 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { PlannerService } from '../../services/planner.service';
 import { DragulaService } from 'ng2-dragula';
 import { FormsModule } from '@angular/forms';
+import { durationColors } from "../../interfaces/duration-colors"
+
 
 @Component({
   selector: 'app-trips-planner',
@@ -83,8 +85,22 @@ export class TripsPlannerComponent implements OnInit {
     // do something
   }
 
-  getHeight(seconds){
-    return ((seconds / 3600) * 40) + "px"
+  getHeight(sec){
+    return ((sec / 3600) * 40) + "px"
   }
-  
+  getBackground(sec){
+    console.log(sec)
+    if(sec < 7200 ){
+      return durationColors["7200"]
+    } else if(sec < 10800 ){
+      return durationColors["10800"]
+    } else if(sec < 14400 ){
+      return durationColors["14400"]
+    } else if(sec < 18000 ){
+      return durationColors["18000"]
+    } else{
+      return durationColors["21600"]
+    }
+  }
+
 }

@@ -9,12 +9,12 @@
     </button>
 
     <div [dragula]='"drag-container"' [dragulaModel]='visits' class="results" *ngIf="resultPlaces">
-      <div *ngFor="let r of resultPlaces" class="visit" [style.height]="getHeight(r.duration)">
+      <div *ngFor="let r of resultPlaces" class="visit" [style.height]="getHeight(r.duration)" [style.background]="getBackground(r.duration)">
         <span>{{r.name}} - {{r.duration / 3600}}h</span>
       </div>
     </div>
 
-    <h3>Saved Places</h3>
+    <h3>Save places for later</h3>
     <app-visit-list [dragula]='"drag-container"' [dragulaModel]='visits' id="-1"></app-visit-list>
 
   </div>

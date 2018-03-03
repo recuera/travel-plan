@@ -34,6 +34,7 @@ router.get("/:id/:day", (req, res, next) => {
 router.get("/search/:cityID/:place", (req, res, next) => {
   let cityID = req.params.cityID;
   let place = req.params.place;
+  console.log(req.params)
   axios.get(`https://api.sygictravelapi.com/1.0/en/places/list?parents=city:${cityID}&query=${place}&limit=3`, {
             headers: { "x-api-key": APIKEY }
           }).then(function(response) {

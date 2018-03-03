@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { PlannerService } from '../../services/planner.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { durationColors } from "../../interfaces/duration-colors"
 
 @Component({
   selector: 'app-visit-list',
@@ -46,8 +47,22 @@ export class VisitListComponent implements OnInit {
   deleteVisit(id){
     console.log(`Delete visit ${id}`)
   }
-  getHeight(seconds){
-    return ((seconds / 3600) * 40) + "px"
+
+  getHeight(sec){
+    return ((sec/ 3600) * 40) + "px"
+  }
+  getBackground(sec){
+    if(sec < 7200 ){
+      return durationColors["7200"]
+    } else if(sec < 10800 ){
+      return durationColors["10800"]
+    } else if(sec < 14400 ){
+      return durationColors["14400"]
+    } else if(sec < 18000 ){
+      return durationColors["18000"]
+    } else{
+      return durationColors["21600"]
+    }
   }
 
 }
