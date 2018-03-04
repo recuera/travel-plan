@@ -9,7 +9,7 @@
     </button>
 
     <div [dragula]='"drag-container"' [dragulaModel]='visits' class="results" *ngIf="resultPlaces">
-      <div *ngFor="let r of resultPlaces" class="visit" [style.height]="getHeight(r.duration)" [style.background]="getBackground(r.duration)">
+      <div *ngFor="let r of resultPlaces, let i = index" [id]="i" class="visit" [style.height]="getHeight(r.duration)" [style.background]="getBackground(r.duration)">
         <span>{{r.name}} - {{r.duration / 3600}}h</span>
       </div>
     </div>

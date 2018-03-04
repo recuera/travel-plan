@@ -7,12 +7,11 @@ const axios = require("axios");
 const { APIKEY } = require("../../config");
 
 
-router.put("/save", (req, res, next) => {
+router.put("/update", (req, res, next) => {
   const updateVisit = {
     day_pos: req.body.dayPos
   };
-
-  TripVisit.findByIdAndUpdate(req.body.visitID, updateVisit,(e, visit) => {
+  TripVisit.findByIdAndUpdate(req.body.tripVisitID, updateVisit,(e, visit) => {
     if (e) {
       return res.json(e);
     }

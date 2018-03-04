@@ -30,10 +30,10 @@ export class PlannerService {
       .catch(this.handleError);
   }
 
-  updateTripVisit(tripID, visitID, dayPos){
-    console.log(tripID, visitID, dayPos)
+  updateTripVisit(tripID, tripVisitID, dayPos){
+    console.log(tripID, tripVisitID, dayPos)
     return this.http
-     .put(`${this.BASE_URL}/api/visits/save`, {visitID, dayPos}, this.options)
+     .put(`${this.BASE_URL}/api/visits/update`, {tripVisitID, dayPos}, this.options)
       .map(res => {
         console.log(res)
         return res.json();
