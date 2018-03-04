@@ -3,7 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { PlannerService } from '../../services/planner.service';
 import { DragulaService } from 'ng2-dragula';
 import { FormsModule } from '@angular/forms';
-import { durationColors } from "../../interfaces/duration-colors"
+import { durationColors } from "../../interfaces/duration-colors";
+//const moment = require("moment");
 
 
 @Component({
@@ -64,23 +65,22 @@ export class TripsPlannerComponent implements OnInit {
   }
   private onDrag(args) {
     let [e, el] = args;
-    console.log(args)
   }
   
   private onDrop(args) {
     let [e, el] = args;
     let visitID = e.id;
     if (!visitID){ visitID = e.childNodes[1].id};
-    let dateRange = [
-      this.plan.dates[0].slice(0,10),
-      this.plan.dates[this.plan.dates.length -1].slice(0,10)
-    ]
     if(this.resultPlaces.length == 0){
       this.planner.updateTripVisit(this.tripID,visitID,el.id).subscribe();
     }
     else {
       let visitID = this.resultPlaces[e.id].id;
       let visitData = this.resultPlaces[e.id];
+      let dateRange = [
+        new Date(this.plan.dates[0]).toISOString().slice(0, 10),
+        new Date(this.plan.dates[this.plan.dates.length -1]).toISOString().slice(0, 10)
+      ]
       this.planner.saveTripVisit(this.tripID,this.cityID, el.id, dateRange, visitID, visitData).subscribe(
         res => {
           this.resultPlaces = []

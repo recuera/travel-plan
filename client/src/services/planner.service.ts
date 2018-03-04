@@ -70,6 +70,16 @@ export class PlannerService {
       .catch(this.handleError);
   }
 
+  deleteVisit(id){
+    return this.http
+    .get(`${this.BASE_URL}/api/visits/delete/${id}`, this.options)
+      .map(res => {
+        this.announceMission("update")
+        return res.json();
+      })
+      .catch(this.handleError);
+  }
+
   handleError(e) {
     console.log(e);
     return Observable.throw(e.json().message);

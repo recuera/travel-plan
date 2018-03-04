@@ -53,6 +53,7 @@ export class VisitListComponent implements OnInit {
   
   deleteVisit(id){
     console.log(`Delete visit ${id}`)
+    this.planner.deleteVisit(id).subscribe()
   }
 
   getHeight(sec){
