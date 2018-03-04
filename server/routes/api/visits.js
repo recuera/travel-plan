@@ -7,45 +7,68 @@ const axios = require("axios");
 const { APIKEY } = require("../../config");
 
 router.post("/save", (req, res, next) => {
-  //console.log(req.body)
-  const { tripID, cityID, visitID, visitData } = req.body;
-  Visit.findOne({ place_id: visitID })
-    .then(visit => {
-      if (!visit) {
-        console.log("this visit does not exist (yet!)");
+  const { tripID, cityID, dayPos, dateRange, visitID, visitData } = req.body;
 
-        const newVisit = new Visit({
-          place_id: visitID,
-          city_id:cityID,
-          title: visitData.name,
-          duration: visitData.duration,
-          img: visitData.thumbnail_url,
-          location: visitData.location
-        });
-
-        console.log(newVisit)
-
-        newVisit.save(err => {
-          if (err) {
-            return res.status(500).json(err);
-          }
-          if (newVisit.errors) {
-            return res.status(400).json(newVisit);
-          }
-          return res.status(200).json(newVisit);
-        });
-
-      } else {
-        console.log(visit);
+  const saveTripVisit = tripVisit => {
+    tripVisit.save(err => {
+      if (err) {
+        return res.status(500).json(err);
       }
-      return res.json(visit);
+      if (tripVisit.errors) {
+        return res.status(400).json(tripVisit);
+      }
+      return res.status(200).json(tripVisit);
+    });
+  };
+
+  axios
+    .get(`https://api.sygictravelapi.com/1.0/en/places/${visitID}/opening-hours?from=${dateRange[0]}&to=${dateRange[1]}`,
+      { headers: { "x-api-key": APIKEY } }
+    )
+    .then(response => {
+
+      let newTripVisit = new TripVisit({
+        trip_id: tripID,
+        day_pos: dayPos
+      });
+
+      newTripVisit.opening = Object.values(response.data.data.opening_hours);
+     
+      Visit.findOne({ place_id: visitID })
+        .then(visit => {
+
+          if (!visit) {
+
+            const newVisit = new Visit({
+              place_id: visitID,
+              city_id: cityID,
+              title: visitData.name,
+              duration: visitData.duration,
+              img: visitData.thumbnail_url,
+              location: visitData.location
+            });
+
+            newVisit.save(err => {
+              if (err) {
+                return res.status(500).json(err);
+              }
+              if (newVisit.errors) {
+                return res.status(400).json(newVisit);
+              }
+              newTripVisit.visit_id = newVisit._id
+              saveTripVisit(newTripVisit)
+            });
+
+          } else {
+            newTripVisit.visit_id = visit._id;
+            saveTripVisit(newTripVisit)
+          }
+        })
+        .catch(function(e) {
+          return res.json(e);
+        });
     })
     .catch(e => res.json(e));
-  // TripVisit.findByIdAndUpdate(req.body.tripVisitID, updateVisit,(e, visit) => {
-  //   if (e) {
-  //     return res.json(e);
-  //   }
-  // });
 });
 
 router.put("/update", (req, res, next) => {

@@ -16,7 +16,7 @@ const tripVisitSchema = new Schema(
       req: "True" 
     },
     start: { 
-      type: String, required: true 
+      type: String 
     },
     opening: {
       type: Array,

@@ -149,6 +149,10 @@ export class TripsPlannerComponent implements OnInit {
     this.planner.getPlan(id).subscribe( res => {
       this.plan = res;
       this.cityID = res.city.id;
+
+      console.log("PLAN DATA")
+      console.log(this.plan.dates[0])
+      console.log(this.plan.dates[this.plan.dates.length -1])
     })
   }
   searchPlace(){
@@ -164,10 +168,14 @@ export class TripsPlannerComponent implements OnInit {
     let [e, el] = args;
     let visitID = e.id;
     if (!visitID){ visitID = e.childNodes[1].id};
+    let dateRange = [
+      this.plan.dates[0].slice(0,10),
+      this.plan.dates[this.plan.dates.length -1].slice(0,10)
+    ]
     if(this.resultPlaces[e.id]){
       let visitID = this.resultPlaces[e.id].id;
-      let visitData = this.resultPlaces[e.id]
-      this.planner.saveTripVisit(this.tripID,this.cityID, visitID, visitData).subscribe();
+      let visitData = this.resultPlaces[e.id];
+      this.planner.saveTripVisit(this.tripID,this.cityID, el.id, dateRange, visitID, visitData).subscribe();
     } else{
       this.planner.updateTripVisit(this.tripID,visitID,el.id).subscribe();
     }
