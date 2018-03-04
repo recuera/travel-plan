@@ -17,102 +17,8 @@ export class TripsPlannerComponent implements OnInit {
   items;
   tripID;
   place:string;
-  //resultPlaces: Array<any>;
-  resultPlaces: Array<any> = [ {
-    "id": "poi:531",
-    "level": "poi",
-    "rating": 8.1360940209134,
-    "quadkey": "120220011012100301",
-    "location": {
-      "lat": 48.8608385,
-      "lng": 2.3363327
-    },
-    "bounding_box": null,
-    "name": "Louvre Museum",
-    "name_suffix": "Paris, France",
-    "url": "https://travel.sygic.com/go/poi:531",
-    "duration": 14400,
-    "marker": "discovering:museum",
-    "categories": [
-      "discovering"
-    ],
-    "parent_ids": [
-      "region:2015691",
-      "city:14",
-      "region:303",
-      "country:14",
-      "continent:1"
-    ],
-    "perex": "The largest art museum in the world is located inside the Louvre Palace which was once the residence of the French kings.",
-    "customer_rating": null,
-    "star_rating": null,
-    "star_rating_unofficial": null,
-    "thumbnail_url": "https://media-cdn.sygictraveldata.com/media/poi:531"
-  },
-   {
-    "id": "poi:5033603",
-    "level": "poi",
-    "rating": 0.026790240414693,
-    "quadkey": "120220011012100033",
-    "location": {
-      "lat": 48.8617269,
-      "lng": 2.3342806
-    },
-    "bounding_box": null,
-    "name": "Carrousel du Louvre",
-    "name_suffix": "Paris, France",
-    "url": "https://travel.sygic.com/go/poi:5033603",
-    "duration": 5400,
-    "marker": "shopping:centre:mall",
-    "categories": [
-      "shopping"
-    ],
-    "parent_ids": [
-      "region:2015691",
-      "city:14",
-      "region:303",
-      "country:14",
-      "continent:1"
-    ],
-    "perex": "The Carrousel du Louvre is an underground shopping mall in Paris, France.",
-    "customer_rating": null,
-    "star_rating": null,
-    "star_rating_unofficial": null,
-    "thumbnail_url": "https://media-cdn.sygictraveldata.com/media/poi:5033603"
-  },
-   {
-    "id": "poi:5036999",
-    "level": "poi",
-    "rating": 0.02589650549647,
-    "quadkey": "120220011012100300",
-    "location": {
-      "lat": 48.8610214,
-      "lng": 2.3358494
-    },
-    "bounding_box": null,
-    "name": "Louvre Palace",
-    "name_suffix": "Paris, France",
-    "url": "https://travel.sygic.com/go/poi:5036999",
-    "duration": 7200,
-    "marker": "sightseeing:castle",
-    "categories": [
-      "hiking",
-      "sightseeing"
-    ],
-    "parent_ids": [
-      "region:2015691",
-      "city:14",
-      "region:303",
-      "country:14",
-      "continent:1"
-    ],
-    "perex": "The Louvre Palace is a former royal palace located on the Right Bank of the Seine in Paris, between the Tuileries Gardens and the church of…",
-    "customer_rating": null,
-    "star_rating": null,
-    "star_rating_unofficial": null,
-    "thumbnail_url": "https://media-cdn.sygictraveldata.com/media/poi:5036999"
-  }
-  ];
+  resultPlaces: Array<any> = [];
+
   constructor(
     public router: Router,
     public route: ActivatedRoute,
@@ -158,6 +64,7 @@ export class TripsPlannerComponent implements OnInit {
   }
   private onDrag(args) {
     let [e, el] = args;
+    console.log(args)
   }
   
   private onDrop(args) {
@@ -168,18 +75,18 @@ export class TripsPlannerComponent implements OnInit {
       this.plan.dates[0].slice(0,10),
       this.plan.dates[this.plan.dates.length -1].slice(0,10)
     ]
-    if(this.resultPlaces[e.id]){
+    if(this.resultPlaces.length == 0){
+      this.planner.updateTripVisit(this.tripID,visitID,el.id).subscribe();
+    }
+    else {
       let visitID = this.resultPlaces[e.id].id;
       let visitData = this.resultPlaces[e.id];
       this.planner.saveTripVisit(this.tripID,this.cityID, el.id, dateRange, visitID, visitData).subscribe(
         res => {
-          this.resultPlaces.splice(e.id, 1)
-          //this.planner.announceMission("update");
+          this.resultPlaces = []
         }
       );
-    } else{
-      this.planner.updateTripVisit(this.tripID,visitID,el.id).subscribe();
-    }
+    } 
   }
   
   private onOver(args) {

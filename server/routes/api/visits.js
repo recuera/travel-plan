@@ -103,7 +103,7 @@ router.get("/search/:cityID/:place", (req, res, next) => {
   console.log(req.params);
   axios
     .get(
-      `https://api.sygictravelapi.com/1.0/en/places/list?parents=city:${cityID}&query=${place}&limit=3`,
+      `https://api.sygictravelapi.com/1.0/en/places/list?parents=city:${cityID}&query=${place}&limit=1`,
       {
         headers: { "x-api-key": APIKEY }
       }
