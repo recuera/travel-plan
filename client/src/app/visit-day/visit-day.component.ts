@@ -11,6 +11,7 @@ export class VisitDayComponent implements OnInit {
 
   visits
   private _day:Date;
+  private _reload:number;
   
   constructor ( 
     public planner: PlannerService,

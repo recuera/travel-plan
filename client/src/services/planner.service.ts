@@ -3,12 +3,24 @@ import { Http } from "@angular/http";
 import "rxjs/add/operator/map";
 import { Observable } from "rxjs/Rx";
 import { SessionService } from "./session.service";
+import { Subject } from "rxjs/Subject";
 
 @Injectable()
 export class PlannerService {
   BASE_URL: string = "http://localhost:3000";
   options: object = { withCredentials: true };
   currentPlan:any;
+
+  // Trying to reload the days:
+  // Observable string sources
+  private missionAnnouncedSource = new Subject<string>();
+  // Observable string streams
+  missionAnnounced$ = this.missionAnnouncedSource.asObservable();
+
+  announceMission(mission: string) {
+    this.missionAnnouncedSource.next(mission);
+  }
+
   constructor(private http: Http) {}
   
   getPlan(id) {
@@ -31,29 +43,25 @@ export class PlannerService {
   }
 
   saveTripVisit(tripID, cityID, dayPos, dateRange, visitID, visitData){
-    console.log(tripID, cityID, dayPos, dateRange, visitID, visitData)
     return this.http
      .post(`${this.BASE_URL}/api/visits/save`, {tripID, cityID, dayPos, dateRange, visitID, visitData}, this.options)
       .map(res => {
-        console.log(res)
+        this.announceMission("update")
         return res.json();
       })
       .catch(this.handleError);
   }
 
   updateTripVisit(tripID, tripVisitID, dayPos){
-    console.log(tripID, tripVisitID, dayPos)
     return this.http
      .put(`${this.BASE_URL}/api/visits/update`, {tripVisitID, dayPos}, this.options)
       .map(res => {
-        console.log(res)
         return res.json();
       })
       .catch(this.handleError);
   }
 
   searchPlace(cityID,place){
-    console.log(cityID,place)
     return this.http
     .get(`${this.BASE_URL}/api/visits/search/${cityID}/${place}`, this.options)
       .map(res => {

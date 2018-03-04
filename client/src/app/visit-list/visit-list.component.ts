@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { PlannerService } from '../../services/planner.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { durationColors } from "../../interfaces/duration-colors"
+import { durationColors } from "../../interfaces/duration-colors";
+import { Subscription }   from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-visit-list',
@@ -21,6 +22,11 @@ export class VisitListComponent implements OnInit {
     public router: Router,
     public route: ActivatedRoute
   ) { 
+    this.subscription = planner.missionAnnounced$.subscribe(
+      mission => {
+        console.log(mission)
+        this.getVisits()
+    });
 
   }
   get dayPos(): any {
@@ -31,19 +37,20 @@ export class VisitListComponent implements OnInit {
   set dayPos(dayPos) {
     this._dayPos = dayPos;
   }
+  subscription: Subscription;
 
   ngOnInit() {
     this.getVisits()
   }
 
   getVisits(){
-    console.log(this.dayPos)
     this.route.params.subscribe( params => {
       this.planner.getVisits(params["id"], this.dayPos.index).subscribe( res => {this.visits = res
         console.log(this.visits)
       })
     })
   }
+  
   deleteVisit(id){
     console.log(`Delete visit ${id}`)
   }
