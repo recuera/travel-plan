@@ -30,6 +30,17 @@ export class PlannerService {
       .catch(this.handleError);
   }
 
+  saveTripVisit(tripID, cityID, visitID, visitData){
+    console.log(tripID, cityID, visitID, visitData)
+    return this.http
+     .post(`${this.BASE_URL}/api/visits/save`, {tripID, cityID, visitID, visitData}, this.options)
+      .map(res => {
+        console.log(res)
+        return res.json();
+      })
+      .catch(this.handleError);
+  }
+
   updateTripVisit(tripID, tripVisitID, dayPos){
     console.log(tripID, tripVisitID, dayPos)
     return this.http

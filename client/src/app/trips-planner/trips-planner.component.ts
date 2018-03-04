@@ -153,7 +153,6 @@ export class TripsPlannerComponent implements OnInit {
   }
   searchPlace(){
     this.planner.searchPlace(this.cityID,this.place).subscribe( res =>{
-      console.log(res)
       this.resultPlaces = res;
     });
   }
@@ -166,9 +165,12 @@ export class TripsPlannerComponent implements OnInit {
     let visitID = e.id;
     if (!visitID){ visitID = e.childNodes[1].id};
     if(this.resultPlaces[e.id]){
-      console.log(this.resultPlaces[e.id])
+      let visitID = this.resultPlaces[e.id].id;
+      let visitData = this.resultPlaces[e.id]
+      this.planner.saveTripVisit(this.tripID,this.cityID, visitID, visitData).subscribe();
+    } else{
+      this.planner.updateTripVisit(this.tripID,visitID,el.id).subscribe();
     }
-    this.planner.updateTripVisit(this.tripID,visitID,el.id).subscribe();
   }
   
   private onOver(args) {
