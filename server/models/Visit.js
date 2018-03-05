@@ -21,7 +21,8 @@ const visitSchema = new Schema(
     },
     img: {
       type: String,
-      required: true
+      required: true,
+      default: "assets/img/bokeh.jpg"
     },
     location: {
       lat:{ type: Number, required: true },

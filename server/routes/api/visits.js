@@ -7,6 +7,7 @@ const axios = require("axios");
 const { APIKEY } = require("../../config");
 
 router.post("/save", (req, res, next) => {
+  if(!req.user){return}
   const { tripID, cityID, dayPos, dateRange, visitID, visitData } = req.body;
 
   const saveTripVisit = tripVisit => {
@@ -44,10 +45,11 @@ router.post("/save", (req, res, next) => {
               city_id: cityID,
               title: visitData.name,
               duration: visitData.duration,
-              img: visitData.thumbnail_url,
               location: visitData.location
             });
-
+            if(visitData.thumbnail_url){
+              newVisit.img = visitData.thumbnail_url;
+            }
             newVisit.save(err => {
               if (err) {
                 return res.status(500).json(err);
@@ -72,6 +74,7 @@ router.post("/save", (req, res, next) => {
 });
 
 router.put("/update", (req, res, next) => {
+  if(!req.user){return}
   const updateVisit = {
     day_pos: req.body.dayPos
   };
@@ -83,11 +86,10 @@ router.put("/update", (req, res, next) => {
 });
 
 router.get("/delete/:id", (req, res, next) => {
-  console.log("ENTRO")
+  if(!req.user){return}
   TripVisit.findByIdAndRemove(req.params.id)
   .then(() => {res.status(200).json({ message: 'removed' })})
   .catch(e => {
-    console.log(e)
     res.status(500).json(e)
   })
 });
@@ -95,7 +97,6 @@ router.get("/delete/:id", (req, res, next) => {
 router.get("/search/:cityID/:place", (req, res, next) => {
   let cityID = req.params.cityID;
   let place = req.params.place;
-  console.log(req.params);
   axios
     .get(
       `https://api.sygictravelapi.com/1.0/en/places/list?parents=city:${cityID}&query=${place}&limit=1`,

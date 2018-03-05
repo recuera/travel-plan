@@ -4,8 +4,6 @@ import { PlannerService } from '../../services/planner.service';
 import { DragulaService } from 'ng2-dragula';
 import { FormsModule } from '@angular/forms';
 import { durationColors } from "../../interfaces/duration-colors";
-//const moment = require("moment");
-
 
 @Component({
   selector: 'app-trips-planner',
@@ -47,15 +45,6 @@ export class TripsPlannerComponent implements OnInit {
     })
   }
 
-  // get updateTop(): number {
-  //   return this._updateTop
-  // }
-
-  // @Input()
-  // set day(updateTop: number) {
-  //   this._updateTop = updateTop;
-  // }
-
   ngOnInit() {
     this.route.params.subscribe( params => {
       this.tripID = params["id"];
@@ -67,7 +56,7 @@ export class TripsPlannerComponent implements OnInit {
     this.planner.getPlan(id).subscribe( res => {
       this.plan = res;
       this.cityID = res.city.id;
-      this.getTopVisits(this.cityID); //<-- Descomentar esto al final
+    //  this.getTopVisits(this.cityID); //<-- Descomentar esto al final
     })
   }
 
@@ -104,22 +93,19 @@ export class TripsPlannerComponent implements OnInit {
       this.planner.updateTripVisit(this.tripID,visitID,el.id).subscribe();
     }
     else {
-     // let visitID = this.resultPlaces[e.id].id;
       let visitID = container.id == "searchResults" ? this.resultPlaces[e.id].id : this.topVisits[e.id].id;
       let visitData = container.id == "searchResults" ? this.resultPlaces[e.id] : this.topVisits[e.id];
       let dateRange = [
         new Date(this.plan.dates[0]).toISOString().slice(0, 10),
         new Date(this.plan.dates[this.plan.dates.length -1]).toISOString().slice(0, 10)
       ]
-      this.topVisits.splice(e.id, 1)
-      console.log(e.id)
-      console.log(this.topVisits)
+    
       this.planner.saveTripVisit(this.tripID,this.cityID, el.id, dateRange, visitID, visitData).subscribe(
         res => {
           if (container.id == "searchResults"){
             this.resultPlaces = []
-          } else {
-            this.updateTop++
+          }else{
+            this.topVisits.splice(e.id, 1)
           }
         }
       );
@@ -128,12 +114,10 @@ export class TripsPlannerComponent implements OnInit {
   
   private onOver(args) {
     let [e, el, container] = args;
-    // do something
   }
   
   private onOut(args) {
     let [e, el, container] = args;
-    // do something
   }
 
   getHeight(sec){
