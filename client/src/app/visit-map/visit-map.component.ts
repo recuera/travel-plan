@@ -41,7 +41,6 @@ export class VisitMapComponent implements OnInit {
   getVisits(){
     this.route.params.subscribe( params => {
       this.planner.getVisits(params["id"], this.dayPos).subscribe( res => {
-        console.log(res)
         this.visits = res
       })
     })
