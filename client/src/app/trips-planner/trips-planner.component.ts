@@ -21,7 +21,6 @@ export class TripsPlannerComponent implements OnInit {
   resultPlaces: Array<any> = [];
   noResult:string;
   topVisits: Array<any> ;
-  private _updateTop:number = 0;
 
   constructor(
     public router: Router,
@@ -48,14 +47,14 @@ export class TripsPlannerComponent implements OnInit {
     })
   }
 
-  get updateTop(): number {
-    return this._updateTop
-  }
+  // get updateTop(): number {
+  //   return this._updateTop
+  // }
 
-  @Input()
-  set day(updateTop: number) {
-    this._updateTop = updateTop;
-  }
+  // @Input()
+  // set day(updateTop: number) {
+  //   this._updateTop = updateTop;
+  // }
 
   ngOnInit() {
     this.route.params.subscribe( params => {
@@ -112,7 +111,8 @@ export class TripsPlannerComponent implements OnInit {
         new Date(this.plan.dates[0]).toISOString().slice(0, 10),
         new Date(this.plan.dates[this.plan.dates.length -1]).toISOString().slice(0, 10)
       ]
-      this.topVisits.splice(this.topVisits[e.id], 1)
+      this.topVisits.splice(e.id, 1)
+      console.log(e.id)
       console.log(this.topVisits)
       this.planner.saveTripVisit(this.tripID,this.cityID, el.id, dateRange, visitID, visitData).subscribe(
         res => {

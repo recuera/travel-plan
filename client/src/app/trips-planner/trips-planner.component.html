@@ -16,7 +16,8 @@
         {{noResult}}
       </div>
     </div>
-   <h3>Top 10 visits in {{plan.city.name}}</h3>
+
+   <h3>Top visits in {{plan.city.name}}</h3>
    <div id="topResults" *ngIf="topVisits" [dragula]='"drag-container"' [dragulaModel]='visits'>
     <div *ngFor="let v of topVisits, let i = index" [id]="i" class="visit" [style.height]="getHeight(v.duration)" [style.background]="getBackground(v.duration)" >
       <span>{{v.name}} - {{v.duration / 3600}}h</span>
