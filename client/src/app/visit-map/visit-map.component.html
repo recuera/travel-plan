@@ -6,7 +6,11 @@
     <a [routerLink]="['/trips' , tripID, 'map']" class="tab">
       <i class="fa fa-map"></i> Map
     </a>
-    <div class="content">
+    <div class="content" *ngIf="plan">
+        <h2>{{plan.city.name}}<small> - {{plan.dates[0] | date: "MMM yyyy" }}</small></h2>
+      <div class="map-dates" >
+         <button *ngFor="let d of plan.dates">{{d | date: "EEE d"}}</button>
+      </div>
       <div *ngIf="visits">
         <div *ngFor="let v of visits, let i = index" [id]="i" class="visit" [style.height]="getHeight(v.visit_id.duration)" [style.background]="getBackground(v.visit_id.duration)">
             <span>{{v.visit_id.title}} - {{v.visit_id.duration / 3600}}h</span>

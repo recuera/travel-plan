@@ -1,13 +1,14 @@
 @import "_variables.scss";
 
-body{
+body {
   margin: 0;
   padding-top: 50px;
   font-family: $sans-font;
-  *{
+  * {
     margin: 0;
   }
-  a:hover,btn:hover{
+  a:hover,
+  btn:hover {
     cursor: pointer;
   }
 }
@@ -22,11 +23,9 @@ body{
   overflow: hidden;
 }
 
-.left-bar{
-
+.left-bar {
 }
-.right-container{
-
+.right-container {
 }
 .left-bar,
 .visit-search {
@@ -38,9 +37,45 @@ body{
   overflow: auto;
   box-sizing: border-box;
   border-right: 1px solid $primary-tp1;
-  .content{
+  .content {
     padding: 10px 20px;
     clear: both;
+    h2 {
+      text-align: center;
+      padding: 20px 0 30px 0;
+    }
+    h3 {
+      text-align: center;
+      margin: 30px 0 20px 0;
+      padding-top: 18px;
+      border-top: 2px solid $grey5;
+    }
+    .map-dates{
+      padding: 0px 9px 20px 9px;
+      border-bottom: 2px solid $grey5;
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      box-sizing: border-box;
+      button{
+        width: 100%;
+        border: none;
+        background: $primary;
+        color: $white;
+        padding: 10px;
+        font-size: 14px;
+        margin: 0 1px;
+        &:hover{
+          cursor: pointer;
+          background: $primaryh
+        }
+      }
+    }
+  }
+}
+.visit-search{
+  .h2{
+    border-bottom: 2px solid $grey5;
   }
 }
 .right-container,
@@ -60,23 +95,23 @@ body{
   background-position: center;
   text-align: center;
 }
-.visit-timeline{
+.visit-timeline {
   padding: 10px;
 }
-.tab{
+.tab {
   width: 50%;
-    text-align: center;
-    padding: 14px 0;
-    float: left;
-    box-sizing: border-box;
-    text-decoration: none;
-    color: $primary;
-    font-weight: 800;
-    svg{
-      margin-right: 10px;
-    }
+  text-align: center;
+  padding: 14px 0;
+  float: left;
+  box-sizing: border-box;
+  text-decoration: none;
+  color: $primary;
+  font-weight: 800;
+  svg {
+    margin-right: 10px;
+  }
 }
-.tab.inactive{
+.tab.inactive {
   background: $grey3;
   color: $white;
   &:hover {
@@ -84,7 +119,7 @@ body{
   }
 }
 
-.visit{
+.visit {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -96,13 +131,13 @@ body{
   line-height: 16px;
   cursor: move;
   cursor: grab;
-  box-shadow: 0px 3px 10px 0px rgba(0,0,0,0.3);
+  box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.3);
   font-size: 14px;
-  a{
+  a {
     padding-left: 10px;
     border-left: 1px solid white;
   }
-  span{
+  span {
     padding-right: 10px;
   }
 }
