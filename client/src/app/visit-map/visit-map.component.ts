@@ -46,6 +46,12 @@ export class VisitMapComponent implements OnInit {
       })
     })
   }
+
+  getDayRoute(dayPos){
+    this.dayPos = dayPos;
+    this.getVisits()
+  }
+
   getHeight(sec){
     return ((sec/ 3600) * 40) + "px"
   }
