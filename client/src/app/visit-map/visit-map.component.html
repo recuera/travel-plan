@@ -7,7 +7,11 @@
       <i class="fa fa-map"></i> Map
     </a>
     <div class="content">
-      LEFT
+      <div *ngIf="visits">
+        <div *ngFor="let v of visits, let i = index" [id]="i" class="visit" [style.height]="getHeight(v.visit_id.duration)" [style.background]="getBackground(v.visit_id.duration)">
+            <span>{{v.visit_id.title}} - {{v.visit_id.duration / 3600}}h</span>
+        </div>
+      </div>
     </div>
   </div>
   <div class="right-container">
