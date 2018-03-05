@@ -82,19 +82,14 @@ router.put("/update", (req, res, next) => {
   });
 });
 
-router.get("/:id/:day", (req, res, next) => {
-  let tripID = req.params.id;
-  let dayPos = -1;
-
-  if (req.params.day != "undefined") {
-    dayPos = req.params.day;
-  }
-  TripVisit.find({ trip_id: tripID, day_pos: dayPos })
-    .populate({ path: "visit_id" })
-    .then(visits => {
-      return res.json(visits);
-    })
-    .catch(e => res.json(e));
+router.get("/delete/:id", (req, res, next) => {
+  console.log("ENTRO")
+  TripVisit.findByIdAndRemove(req.params.id)
+  .then(() => {res.status(200).json({ message: 'removed' })})
+  .catch(e => {
+    console.log(e)
+    res.status(500).json(e)
+  })
 });
 
 router.get("/search/:cityID/:place", (req, res, next) => {
@@ -116,6 +111,21 @@ router.get("/search/:cityID/:place", (req, res, next) => {
       console.log(e);
       return res.json(e);
     });
+});
+
+router.get("/:id/:day", (req, res, next) => {
+  let tripID = req.params.id;
+  let dayPos = -1;
+
+  if (req.params.day != "undefined") {
+    dayPos = req.params.day;
+  }
+  TripVisit.find({ trip_id: tripID, day_pos: dayPos })
+    .populate({ path: "visit_id" })
+    .then(visits => {
+      return res.json(visits);
+    })
+    .catch(e => res.json(e));
 });
 
 module.exports = router;

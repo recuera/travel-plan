@@ -71,6 +71,7 @@ export class PlannerService {
   }
 
   deleteVisit(id){
+    console.log("delete this")
     return this.http
     .get(`${this.BASE_URL}/api/visits/delete/${id}`, this.options)
       .map(res => {

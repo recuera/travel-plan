@@ -102,10 +102,5 @@ router.get("/:id", (req, res, next) => {
   });
 });
 
-router.get("delete/:id", (req, res, next) => {
-  TripVisit.findByIdAndRemove(req.params.id)
-  .then(() => {res.status(200).json({ message: 'removed' })})
-  .catch(e => res.status(500).json(e))
-});
 
 module.exports = router;
