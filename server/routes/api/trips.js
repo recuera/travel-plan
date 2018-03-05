@@ -62,18 +62,17 @@ router.post("/", (req, res, next) => {
   Trip.findOne({ "city.id": cityID }, { img: 1, _id: 0 })
     .then(data => {
       console.log(data)
-      console.log(cityID)
       if (data) {
         newTrip.img = data.img;
+        newTrip.location = data.location;
         saveTrip(newTrip)
       } else {
-        console.log("ADIOS")
         axios
           .get(`https://api.sygictravelapi.com/1.0/en/places/city:${cityID}`, {
             headers: { "x-api-key": APIKEY }
           })
           .then(function(response) {
-
+            newTrip.location = response.data.data.place.location;
             let imgURL = response.data.data.place.main_media;
 
             if (imgURL != null) {

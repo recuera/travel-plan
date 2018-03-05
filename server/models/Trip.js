@@ -27,6 +27,10 @@ const tripSchema = new Schema(
       type: String,
       required: true, 
       default: "assets/img/map.jpg"
+    },
+    location: {
+      lat:{ type: Number, required: true },
+      lng:{ type: Number, required: true }
     }
   },
   {

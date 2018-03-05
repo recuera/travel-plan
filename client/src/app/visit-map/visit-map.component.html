@@ -19,7 +19,7 @@
     </div>
   </div>
   <div class="right-container" *ngIf="visits">
-    <agm-map [latitude]="lat" [longitude]="lng">
+    <agm-map [latitude]="lat" [longitude]="lng" [zoom]="15" >
         <agm-marker *ngFor="let v of visits" [latitude]="v.visit_id.location.lat" [longitude]="v.visit_id.location.lng"></agm-marker>
       </agm-map>
   </div>

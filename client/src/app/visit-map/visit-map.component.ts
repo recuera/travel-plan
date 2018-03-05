@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PlannerService } from '../../services/planner.service';
 import { durationColors } from "../../interfaces/duration-colors";
+import { GoogleMapsAPIWrapper, AgmMap, LatLngBounds, LatLngBoundsLiteral} from '@agm/core';
+
 
 @Component({
   selector: 'app-visit-map',
@@ -15,8 +17,9 @@ export class VisitMapComponent implements OnInit {
   visits;
   dayPos:number = 0;
   title: string = 'My first AGM project';
-  lat: number = 51.678418;
-  lng: number = 7.809007;
+  lat: number;
+  lng: number;
+
 
   constructor(    
     public router: Router,
@@ -31,11 +34,14 @@ export class VisitMapComponent implements OnInit {
       this.getPlan(this.tripID)
     })
   }
+
   getPlan(id){
     this.planner.getPlan(id).subscribe( res => {
       this.plan = res;
       console.log(this.plan)
       this.cityID = res.city.id;
+      this.lat = res.location.lat;
+      this.lng = res.location.lng;
     })
   }
   getVisits(){
