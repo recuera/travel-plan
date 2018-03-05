@@ -1,13 +1,5 @@
 @import "../../_variables.scss";
 
-.main-container {
-  width: 100%;
-  min-height: calc(100vh - 130px);
-  box-sizing: border-box;
-  padding: 0;
-  overflow: hidden;
-}
-
 h2{
   text-align: center;
   padding: 20px 0 30px 0;
@@ -20,39 +12,6 @@ h3{
   border-top: 2px solid $grey5;
 }
 
-.visit-search {
-  display: block;
-  float: left;
-  width: 350px;
-  background-color: $white;
-  height: calc(100vh - 130px);
-  overflow: auto;
-  box-sizing: border-box;
-  border-right: 1px solid $primary-tp1;
-}
-.visit-search .content{
-  padding: 10px 20px;
-  clear: both;
-}
-
-.visit-timeline {
-  box-sizing: border-box;
-  min-height: calc(100vh - 130px);
-  height: 100%;
-  float: left;
-  padding: 10px;
-  width: calc(100vw - 350px);
-  background-color: #e8dbdb;
-  overflow: auto;
-  white-space: nowrap;
-  background-filter: blur(2px);
-  background-image: url(https://media-cdn.sygictraveldata.com/media/6126643….jpg);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-blend-mode: overlay;
-  background-position: center;
-  text-align: center;
-}
 app-visit-list{
   display: block;
   min-height: 100px;

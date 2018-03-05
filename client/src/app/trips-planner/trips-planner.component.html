@@ -36,6 +36,4 @@
     <div class="visit-timeline" [ngStyle]="{ 'background-image': 'url(' + plan.img + ')'}">
       <app-visit-day *ngFor="let d of plan.dates, let i = index" [day]="{day:d, index:i}"></app-visit-day>
     </div>
-  
-
 </div>

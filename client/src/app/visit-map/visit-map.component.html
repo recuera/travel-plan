@@ -1,3 +1,18 @@
-<p>
-  visit-map works!
-</p>
+<div class="main-container">
+  <div class="left-bar">
+    <a [routerLink]="['/trips' , tripID]" class="tab inactive">
+      <i class="fa fa-calendar-alt"></i> Timeline
+    </a>
+    <a [routerLink]="['/trips' , tripID, 'map']" class="tab">
+      <i class="fa fa-map"></i> Map
+    </a>
+    <div class="content">
+      LEFT
+    </div>
+  </div>
+  <div class="right-container">
+    <agm-map [latitude]="lat" [longitude]="lng">
+        <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+      </agm-map>
+  </div>
+</div>

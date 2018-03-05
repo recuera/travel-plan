@@ -17,9 +17,10 @@ import { TripsPlannerComponent } from './trips-planner/trips-planner.component';
 import { PlannerService } from "../services/planner.service";
 import { VisitListComponent } from './visit-list/visit-list.component';
 import { VisitDayComponent } from './visit-day/visit-day.component';
-import {DragulaModule, DragulaService} from 'ng2-dragula/ng2-dragula';
+import { DragulaModule, DragulaService} from 'ng2-dragula/ng2-dragula';
 import { CommonModule } from '@angular/common';
 import { VisitMapComponent } from './visit-map/visit-map.component';
+import { AgmCoreModule } from '@agm/core';
 
 
 @NgModule({
@@ -34,7 +35,7 @@ import { VisitMapComponent } from './visit-map/visit-map.component';
     TripsPlannerComponent,
     VisitListComponent,
     VisitDayComponent,
-    VisitMapComponent
+    VisitMapComponent   
   ],
   imports: [
     CommonModule,
@@ -42,7 +43,10 @@ import { VisitMapComponent } from './visit-map/visit-map.component';
     HttpModule,
     FormsModule,
     RouterModule.forRoot(routes),
-    DragulaModule
+    DragulaModule,
+     AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAPzoE0WdlxR_EsAkQa3YObMi4BmAvrS4I'
+    })
   ],
   providers: [
     SessionService, 
