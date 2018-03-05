@@ -1,7 +1,7 @@
 <div class="main-container" *ngIf="plan">
   
   <div class="visit-search">
-    <h2>{{plan.city.name}} - {{plan.dates[0] | date: "MMM yyyy" }}</h2>
+    <h2>{{plan.city.name}}<small> - {{plan.dates[0] | date: "MMM yyyy" }}</small></h2>
 
     <input type="text" [(ngModel)]="place" placeholder="Search a place to visit" />
     <button type="button" class="input-btn" (click)="searchPlace()">
