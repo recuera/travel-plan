@@ -1,32 +1,41 @@
 <div class="main-container" *ngIf="plan">
   
   <div class="visit-search">
-    <h2>{{plan.city.name}}<small> - {{plan.dates[0] | date: "MMM yyyy" }}</small></h2>
 
-    <input type="text" [(ngModel)]="place" placeholder="Search a place to visit" />
-    <button type="button" class="input-btn" (click)="searchPlace()">
-      <i class="fa fa-search"></i>
-    </button>
+    <a [routerLink]="['/trips' , tripID]" class="tab" >
+      <i class="fa fa-calendar-alt"></i> Timeline
+    </a>
+    <a [routerLink]="['/trips' , tripID, 'map']" class="tab inactive" >
+      <i class="fa fa-map"></i> Map
+    </a>
+    <div class="content">
+      <h2>{{plan.city.name}}<small> - {{plan.dates[0] | date: "MMM yyyy" }}</small></h2>
 
-    <div id="searchResults" [dragula]='"drag-container"' [dragulaModel]='visits' class="results" *ngIf="resultPlaces">
-      <div *ngFor="let r of resultPlaces, let i = index" [id]="i" class="visit" [style.height]="getHeight(r.duration)" [style.background]="getBackground(r.duration)">
-        <span>{{r.name}} - {{r.duration / 3600}}h</span>
+      <input type="text" [(ngModel)]="place" placeholder="Search a place to visit" />
+      <button type="button" class="input-btn" (click)="searchPlace()">
+        <i class="fa fa-search"></i>
+      </button>
+
+      <div id="searchResults" [dragula]='"drag-container"' [dragulaModel]='visits' class="results" *ngIf="resultPlaces">
+        <div *ngFor="let r of resultPlaces, let i = index" [id]="i" class="visit" [style.height]="getHeight(r.duration)" [style.background]="getBackground(r.duration)">
+          <span>{{r.name}} - {{r.duration / 3600}}h</span>
+        </div>
+        <div *ngIf="noResult" class="error-box">
+          {{noResult}}
+        </div>
       </div>
-      <div *ngIf="noResult" class="error-box">
-        {{noResult}}
+
+    <h3>Top visits in {{plan.city.name}}</h3>
+    <div id="topResults" *ngIf="topVisits" [dragula]='"drag-container"' [dragulaModel]='visits'>
+      <div *ngFor="let v of topVisits, let i = index" [id]="i" class="visit" [style.height]="getHeight(v.duration)" [style.background]="getBackground(v.duration)" >
+        <span>{{v.name}} - {{v.duration / 3600}}h</span>
       </div>
     </div>
-
-   <h3>Top visits in {{plan.city.name}}</h3>
-   <div id="topResults" *ngIf="topVisits" [dragula]='"drag-container"' [dragulaModel]='visits'>
-    <div *ngFor="let v of topVisits, let i = index" [id]="i" class="visit" [style.height]="getHeight(v.duration)" [style.background]="getBackground(v.duration)" >
-      <span>{{v.name}} - {{v.duration / 3600}}h</span>
     </div>
-   </div>
   </div>
-
-  <div class="visit-timeline" [ngStyle]="{ 'background-image': 'url(' + plan.img + ')'}">
-    <app-visit-day *ngFor="let d of plan.dates, let i = index" [day]="{day:d, index:i}"></app-visit-day>
-  </div>
+    <div class="visit-timeline" [ngStyle]="{ 'background-image': 'url(' + plan.img + ')'}">
+      <app-visit-day *ngFor="let d of plan.dates, let i = index" [day]="{day:d, index:i}"></app-visit-day>
+    </div>
+  
 
 </div>

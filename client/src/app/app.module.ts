@@ -19,6 +19,7 @@ import { VisitListComponent } from './visit-list/visit-list.component';
 import { VisitDayComponent } from './visit-day/visit-day.component';
 import {DragulaModule, DragulaService} from 'ng2-dragula/ng2-dragula';
 import { CommonModule } from '@angular/common';
+import { VisitMapComponent } from './visit-map/visit-map.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { CommonModule } from '@angular/common';
     TripsNewComponent,
     TripsPlannerComponent,
     VisitListComponent,
-    VisitDayComponent
+    VisitDayComponent,
+    VisitMapComponent
   ],
   imports: [
     CommonModule,

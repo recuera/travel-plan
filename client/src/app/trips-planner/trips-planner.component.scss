@@ -23,13 +23,16 @@ h3{
 .visit-search {
   display: block;
   float: left;
-  padding: 10px 20px;
   width: 350px;
   background-color: $white;
-  max-height: calc(100vh - 130px);
+  height: calc(100vh - 130px);
   overflow: auto;
   box-sizing: border-box;
   border-right: 1px solid $primary-tp1;
+}
+.visit-search .content{
+  padding: 10px 20px;
+  clear: both;
 }
 
 .visit-timeline {
