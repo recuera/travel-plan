@@ -11,7 +11,7 @@ export class PlannerService {
   options: object = { withCredentials: true };
   currentPlan:any;
 
-  // Trying to reload the days:
+  // Reload the days:
   // Observable string sources
   private missionAnnouncedSource = new Subject<string>();
   // Observable string streams
@@ -35,13 +35,22 @@ export class PlannerService {
 
   getVisits(tripID, dayPos) {
     return this.http
-      .get(`${this.BASE_URL}/api/visits/${tripID}/${dayPos}`, this.options)
+      .get(`${this.BASE_URL}/api/visits/get/${tripID}/${dayPos}`, this.options)
       .map(res => {
         return res.json();
       })
       .catch(this.handleError);
   }
 
+  getTopVisits(cityID){
+    return this.http
+      .get(`${this.BASE_URL}/api/visits/getTop/${cityID}`, this.options)
+      .map(res => {
+        return res.json();
+      })
+      .catch(this.handleError);
+  }
+  
   saveTripVisit(tripID, cityID, dayPos, dateRange, visitID, visitData){
     return this.http
      .post(`${this.BASE_URL}/api/visits/save`, {tripID, cityID, dayPos, dateRange, visitID, visitData}, this.options)
@@ -71,7 +80,6 @@ export class PlannerService {
   }
 
   deleteVisit(id){
-    console.log("delete this")
     return this.http
     .get(`${this.BASE_URL}/api/visits/delete/${id}`, this.options)
       .map(res => {

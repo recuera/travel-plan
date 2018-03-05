@@ -8,7 +8,7 @@
       <i class="fa fa-search"></i>
     </button>
 
-    <div [dragula]='"drag-container"' [dragulaModel]='visits' class="results" *ngIf="resultPlaces">
+    <div id="searchResults" [dragula]='"drag-container"' [dragulaModel]='visits' class="results" *ngIf="resultPlaces">
       <div *ngFor="let r of resultPlaces, let i = index" [id]="i" class="visit" [style.height]="getHeight(r.duration)" [style.background]="getBackground(r.duration)">
         <span>{{r.name}} - {{r.duration / 3600}}h</span>
       </div>
@@ -16,10 +16,12 @@
         {{noResult}}
       </div>
     </div>
-
-    <h3>Save places for later</h3>
-    <app-visit-list [dragula]='"drag-container"' [dragulaModel]='visits' id="-1"></app-visit-list>
-
+   <h3>Top 10 visits in {{plan.city.name}}</h3>
+   <div id="topResults" *ngIf="topVisits" [dragula]='"drag-container"' [dragulaModel]='visits'>
+    <div *ngFor="let v of topVisits, let i = index" [id]="i" class="visit" [style.height]="getHeight(v.duration)" [style.background]="getBackground(v.duration)" >
+      <span>{{v.name}} - {{v.duration / 3600}}h</span>
+    </div>
+   </div>
   </div>
 
   <div class="visit-timeline" [ngStyle]="{ 'background-image': 'url(' + plan.img + ')'}">

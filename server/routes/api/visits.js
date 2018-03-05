@@ -113,13 +113,31 @@ router.get("/search/:cityID/:place", (req, res, next) => {
     });
 });
 
-router.get("/:id/:day", (req, res, next) => {
-  let tripID = req.params.id;
-  let dayPos = -1;
+router.get("/getTop/:cityID", (req, res, next) => {
+  let cityID = req.params.cityID;
 
-  if (req.params.day != "undefined") {
-    dayPos = req.params.day;
-  }
+  axios
+    .get(
+      `https://api.sygictravelapi.com/1.0/en/places/list?parents=city:${cityID}&categories=sightseeing&levels=poi&limit=10`,
+      {
+        headers: { "x-api-key": APIKEY }
+      }
+    )
+    .then(function(response) {
+      console.log(response.data.data.places);
+      return res.json(response.data.data.places);
+    })
+    .catch(function(e) {
+      console.log(e);
+      return res.json(e);
+    });
+
+});
+
+router.get("/get/:id/:day", (req, res, next) => {
+  let tripID = req.params.id;
+  let dayPos = req.params.day;
+
   TripVisit.find({ trip_id: tripID, day_pos: dayPos })
     .populate({ path: "visit_id" })
     .then(visits => {

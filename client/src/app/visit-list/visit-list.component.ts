@@ -46,7 +46,6 @@ export class VisitListComponent implements OnInit {
   getVisits(){
     this.route.params.subscribe( params => {
       this.planner.getVisits(params["id"], this.dayPos.index).subscribe( res => {this.visits = res
-        console.log(this.visits)
       })
     })
   }

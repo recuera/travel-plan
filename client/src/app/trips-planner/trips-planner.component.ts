@@ -20,6 +20,8 @@ export class TripsPlannerComponent implements OnInit {
   place:string;
   resultPlaces: Array<any> = [];
   noResult:string;
+  topVisits: Array<any> ;
+  private _updateTop:number = 0;
 
   constructor(
     public router: Router,
@@ -46,6 +48,15 @@ export class TripsPlannerComponent implements OnInit {
     })
   }
 
+  get updateTop(): number {
+    return this._updateTop
+  }
+
+  @Input()
+  set day(updateTop: number) {
+    this._updateTop = updateTop;
+  }
+
   ngOnInit() {
     this.route.params.subscribe( params => {
       this.tripID = params["id"];
@@ -57,8 +68,19 @@ export class TripsPlannerComponent implements OnInit {
     this.planner.getPlan(id).subscribe( res => {
       this.plan = res;
       this.cityID = res.city.id;
+      this.getTopVisits(this.cityID); //<-- Descomentar esto al final
     })
   }
+
+  getTopVisits(cityID){
+    this.planner.getTopVisits(cityID).subscribe(
+      res => {
+        this.topVisits = res
+        console.log(this.topVisits)
+      }
+    );
+  }
+
   searchPlace(){
     this.planner.searchPlace(this.cityID,this.place).subscribe( res =>{
       if(res.length >0){
@@ -75,22 +97,30 @@ export class TripsPlannerComponent implements OnInit {
   }
   
   private onDrop(args) {
-    let [e, el] = args;
+    let [e, el, container] = args;
+    console.log(container)
     let visitID = e.id;
     if (!visitID){ visitID = e.childNodes[1].id};
-    if(this.resultPlaces.length == 0){
+    if(container.id != "topResults" && container.id != "searchResults"){
       this.planner.updateTripVisit(this.tripID,visitID,el.id).subscribe();
     }
     else {
-      let visitID = this.resultPlaces[e.id].id;
-      let visitData = this.resultPlaces[e.id];
+     // let visitID = this.resultPlaces[e.id].id;
+      let visitID = container.id == "searchResults" ? this.resultPlaces[e.id].id : this.topVisits[e.id].id;
+      let visitData = container.id == "searchResults" ? this.resultPlaces[e.id] : this.topVisits[e.id];
       let dateRange = [
         new Date(this.plan.dates[0]).toISOString().slice(0, 10),
         new Date(this.plan.dates[this.plan.dates.length -1]).toISOString().slice(0, 10)
       ]
+      this.topVisits.splice(this.topVisits[e.id], 1)
+      console.log(this.topVisits)
       this.planner.saveTripVisit(this.tripID,this.cityID, el.id, dateRange, visitID, visitData).subscribe(
         res => {
-          this.resultPlaces = []
+          if (container.id == "searchResults"){
+            this.resultPlaces = []
+          } else {
+            this.updateTop++
+          }
         }
       );
     } 
