@@ -19,6 +19,7 @@ export class TripsPlannerComponent implements OnInit {
   tripID;
   place:string;
   resultPlaces: Array<any> = [];
+  noResult:string;
 
   constructor(
     public router: Router,
@@ -60,7 +61,13 @@ export class TripsPlannerComponent implements OnInit {
   }
   searchPlace(){
     this.planner.searchPlace(this.cityID,this.place).subscribe( res =>{
-      this.resultPlaces = res;
+      if(res.length >0){
+        this.noResult = null;
+        this.resultPlaces = res;
+      }
+      else{
+        this.noResult = "No place found, sorry!"
+      }
     });
   }
   private onDrag(args) {

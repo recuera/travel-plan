@@ -12,6 +12,9 @@
       <div *ngFor="let r of resultPlaces, let i = index" [id]="i" class="visit" [style.height]="getHeight(r.duration)" [style.background]="getBackground(r.duration)">
         <span>{{r.name}} - {{r.duration / 3600}}h</span>
       </div>
+      <div *ngIf="noResult" class="error-box">
+        {{noResult}}
+      </div>
     </div>
 
     <h3>Save places for later</h3>

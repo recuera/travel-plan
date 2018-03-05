@@ -93,3 +93,13 @@ button.input-btn{
 button.input-btn:hover{
   cursor: pointer;
 }
+.error-box{
+  clear: both;
+  color: $error;
+  border: 2px solid $error;
+  background-color: rgba(223, 21, 64, .07);
+  font-weight: 600;
+  padding: 12px;
+  text-align: center;
+  margin-bottom: 40px;
+}
