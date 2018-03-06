@@ -38,7 +38,6 @@ export class VisitMapComponent implements OnInit {
   getPlan(id){
     this.planner.getPlan(id).subscribe( res => {
       this.plan = res;
-      console.log(this.plan)
       this.cityID = res.city.id;
       this.lat = res.location.lat;
       this.lng = res.location.lng;
@@ -51,6 +50,15 @@ export class VisitMapComponent implements OnInit {
       })
     })
   }
+  
+  //map bounds 
+  // markers = [];//some array
+  // bounds = new google.maps.LatLngBounds();
+  // for (var i = 0; i < markers.length; i++) {
+  // bounds.extend(markers[i].getPosition());
+  // }
+
+  // map.fitBounds(bounds);
 
   getDayRoute(dayPos){
     this.dayPos = dayPos;
