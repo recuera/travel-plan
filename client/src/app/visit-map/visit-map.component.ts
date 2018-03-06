@@ -48,24 +48,25 @@ export class VisitMapComponent implements OnInit {
     this.route.params.subscribe( params => {
       this.planner.getVisits(params["id"], this.dayPos).subscribe( res => {
         this.visits = res
+        if(this.visits.length > 0){
+          this.storeMap.fitBounds(this.findVisitsBounds());
+        }
       })
     })
   }
   
   public storeMapReady(map){
       this.storeMap = map;
-      this.storeMap.fitBounds(this.findVisitsBounds());
   }
 
   public findVisitsBounds(){
       let bounds:LatLngBounds = new google.maps.LatLngBounds();
       for(let visit of this.visits){
-        console.log(visit)
         bounds.extend(new google.maps.LatLng(visit.visit_id.location.lat, visit.visit_id.location.lng));
       }
       return bounds;
   }
-  
+
   getDayRoute(dayPos){
     this.dayPos = dayPos;
     this.getVisits()

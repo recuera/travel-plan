@@ -13,7 +13,7 @@
       </div>
       <div *ngIf="visits">
         <div *ngFor="let v of visits, let i = index" [id]="i" class="visit" [style.height]="getHeight(v.visit_id.duration)" [style.background]="getBackground(v.visit_id.duration)">
-            <span>{{v.visit_id.title}} - {{v.visit_id.duration / 3600}}h</span>
+            <span>{{i +1}} </span><span>{{v.visit_id.title}} - {{v.visit_id.duration / 3600}}h</span>
         </div>
       </div>
     </div>
