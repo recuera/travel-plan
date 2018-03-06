@@ -67,6 +67,22 @@ export class VisitMapComponent implements OnInit {
       return bounds;
   }
 
+  public getIcon(sec){
+    let num = 7200
+    if(sec < 7200 ){
+      num = 7200;
+    } else if(sec < 10800 ){
+      num = 10800;
+    } else if(sec < 14400 ){
+      num = 14400;
+    } else if(sec < 18000 ){
+      num = 18000;
+    } else{
+      num = 21600;
+    }
+    return `../../assets/img/marker-${num}.svg`
+  }
+
   getDayRoute(dayPos){
     this.dayPos = dayPos;
     this.getVisits()
