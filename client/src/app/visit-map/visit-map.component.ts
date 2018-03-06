@@ -80,7 +80,7 @@ export class VisitMapComponent implements OnInit {
     } else{
       num = 21600;
     }
-    return `../../assets/img/marker-${num}.svg`
+    return `../../assets/img/marker-${num}.png`
   }
 
   getDayRoute(dayPos){
