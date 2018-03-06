@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { PlannerService } from '../../services/planner.service';
 import { durationColors } from "../../interfaces/duration-colors";
 import { GoogleMapsAPIWrapper, AgmMap, LatLngBounds, LatLngBoundsLiteral} from '@agm/core';
-
+declare var google: any;
 
 @Component({
   selector: 'app-visit-map',
@@ -19,6 +19,7 @@ export class VisitMapComponent implements OnInit {
   title: string = 'My first AGM project';
   lat: number;
   lng: number;
+  storeMap
 
 
   constructor(    
@@ -51,15 +52,20 @@ export class VisitMapComponent implements OnInit {
     })
   }
   
-  //map bounds 
-  // markers = [];//some array
-  // bounds = new google.maps.LatLngBounds();
-  // for (var i = 0; i < markers.length; i++) {
-  // bounds.extend(markers[i].getPosition());
-  // }
+  public storeMapReady(map){
+      this.storeMap = map;
+      this.storeMap.fitBounds(this.findVisitsBounds());
+  }
 
-  // map.fitBounds(bounds);
-
+  public findVisitsBounds(){
+      let bounds:LatLngBounds = new google.maps.LatLngBounds();
+      for(let visit of this.visits){
+        console.log(visit)
+        bounds.extend(new google.maps.LatLng(visit.visit_id.location.lat, visit.visit_id.location.lng));
+      }
+      return bounds;
+  }
+  
   getDayRoute(dayPos){
     this.dayPos = dayPos;
     this.getVisits()
