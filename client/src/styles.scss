@@ -146,3 +146,26 @@ agm-map {
   height: calc(100vh - 130px);
   width: 100%;
 }
+.si-frame.si-content-wrapper {
+  padding: 10px;
+}
+.si-content-wrapper {
+  width: fit-content !important;
+}
+
+.si-content img{
+  float: left;
+  div[_ngcontent-c3]{
+    float: left;
+    box-sizing: border-box;
+  }
+}
+.info-window-content{
+    padding: 10px;
+    text-align: left;
+    float: left;
+    box-sizing: border-box;
+    p{
+      word-break: normal;
+    }
+}

@@ -34,7 +34,11 @@
         }" >
         <agm-snazzy-info-window [maxWidth]="300" [closeWhenOthersOpen]="true">
           <ng-template>
-            My first Snazzy Info Window!
+            <img [src]="v.visit_id.img" alt="">
+            <div class="info-window-content">
+              <h4>{{v.visit_id.title}}</h4>
+              <p>opens: <br>- {{v.opening[i][0].opening}}<br>- {{v.opening[i][0].closing}}</p>
+            </div>
           </ng-template>
         </agm-snazzy-info-window>
       </agm-marker>
