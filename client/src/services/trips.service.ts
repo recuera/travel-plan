@@ -3,12 +3,12 @@ import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Observable } from "rxjs/Rx";
 import { SessionService } from './session.service';
-
+import { environment } from "../environments/environment"
 
 
 @Injectable()
 export class TripsService {
-  BASE_URL: string = "http://localhost:3000";
+  BASE_URL: string = environment.BASEURL;
   options:object = {withCredentials:true};
 
   constructor(

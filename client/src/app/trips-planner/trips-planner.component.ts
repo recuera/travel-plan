@@ -4,6 +4,7 @@ import { PlannerService } from '../../services/planner.service';
 import { DragulaService } from 'ng2-dragula';
 import { FormsModule } from '@angular/forms';
 import { durationColors } from "../../interfaces/duration-colors";
+import { SessionService } from '../../services/session.service';
 
 @Component({
   selector: 'app-trips-planner',
@@ -19,14 +20,17 @@ export class TripsPlannerComponent implements OnInit {
   resultPlaces: Array<any> = [];
   noResult:string;
   topVisits: Array<any> ;
+  user
 
   constructor(
     public router: Router,
     public route: ActivatedRoute,
     public planner: PlannerService,
     private dragulaService: DragulaService,
-    public forms: FormsModule
+    public forms: FormsModule,
+    public session: SessionService
   )  {
+    this.session.getUserEvent().subscribe(user => this.user = user)
     dragulaService.drag.subscribe((value) => {
     //  console.log(`drag: ${value[0]}`);
       this.onDrag(value.slice(1));
@@ -50,6 +54,7 @@ export class TripsPlannerComponent implements OnInit {
       this.tripID = params["id"];
       this.getPlan(this.tripID)
     })
+    
   }
 
   getPlan(id){
