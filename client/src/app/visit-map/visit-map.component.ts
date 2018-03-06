@@ -3,6 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { PlannerService } from '../../services/planner.service';
 import { durationColors } from "../../interfaces/duration-colors";
 import { GoogleMapsAPIWrapper, AgmMap, LatLngBounds, LatLngBoundsLiteral} from '@agm/core';
+import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
+
 declare var google: any;
 
 @Component({

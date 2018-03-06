@@ -21,7 +21,7 @@ import { DragulaModule, DragulaService} from 'ng2-dragula/ng2-dragula';
 import { CommonModule } from '@angular/common';
 import { VisitMapComponent } from './visit-map/visit-map.component';
 import { AgmCoreModule } from '@agm/core';
-
+import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 
 @NgModule({
   declarations: [
@@ -44,9 +44,10 @@ import { AgmCoreModule } from '@agm/core';
     FormsModule,
     RouterModule.forRoot(routes),
     DragulaModule,
-     AgmCoreModule.forRoot({
+    AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAPzoE0WdlxR_EsAkQa3YObMi4BmAvrS4I'
-    })
+    }),
+    AgmSnazzyInfoWindowModule
   ],
   providers: [
     SessionService, 

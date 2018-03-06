@@ -23,7 +23,7 @@
         <agm-marker *ngFor="let v of visits, let i = index" 
         [latitude]="v.visit_id.location.lat" 
         [longitude]="v.visit_id.location.lng" 
-        clickable="true"
+        
         [iconUrl]="getIcon(v.visit_id.duration)"
         [label]="{
           text: (i+1 + ''),
@@ -31,7 +31,13 @@
           fontSize: '20px',
           fontWeight: 'bold',
           fontFamily:'lato, sans-serif'
-        }" ></agm-marker>
+        }" >
+        <agm-snazzy-info-window [maxWidth]="300" [closeWhenOthersOpen]="true">
+          <ng-template>
+            My first Snazzy Info Window!
+          </ng-template>
+        </agm-snazzy-info-window>
+      </agm-marker>
       </agm-map>
   </div>
 </div>
