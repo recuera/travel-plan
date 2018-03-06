@@ -42,11 +42,17 @@ export class LoginSignupComponent implements OnInit {
   }
 
   signup(){
+    console.log(this.username,this.password, this.name)
     this.session.signup(this.username,this.password, this.name)
     .catch(e => this.error = e)
     .subscribe(user => {
       console.log(`Welcome ${user.username}`);
-      this.router.navigate(['auth/login'])
+      if(this.session.getUser()){
+        this.router.navigate(['trips'])
+      }
+      else{
+        this.router.navigate(['auth/login'])
+      }
       });
   }
 
