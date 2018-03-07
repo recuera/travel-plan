@@ -19,7 +19,7 @@
     </div>
   </div>
   <div class="right-container" *ngIf="visits">
-    <agm-map [latitude]="lat" [longitude]="lng" [zoom]="15" (mapReady)="storeMapReady($event)" >
+    <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" (mapReady)="storeMapReady($event)" >
         <agm-marker *ngFor="let v of visits, let i = index" 
         [latitude]="v.visit_id.location.lat" 
         [longitude]="v.visit_id.location.lng" 
@@ -37,7 +37,7 @@
             <img [src]="v.visit_id.img" alt="">
             <div class="info-window-content">
               <h4>{{v.visit_id.title}}</h4>
-              <p *ngIf="v.opening[i][0].opening">opens: <br>- {{v.opening[i][0].opening}}<br>- {{v.opening[i][0].closing}}</p>
+              <p *ngIf="v.opening[i][0]">opens: <br>- {{v.opening[i][0].opening}}<br>- {{v.opening[i][0].closing}}</p>
             </div>
           </ng-template>
         </agm-snazzy-info-window>

@@ -162,6 +162,9 @@ agm-map {
       text-align: left;
       float: left;
       box-sizing: border-box;
+      width: 170px;
+      word-wrap: break-word;
+      white-space: normal;
       h4{
         color: $primary;
         font-size: 16px;

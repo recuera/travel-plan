@@ -18,10 +18,10 @@ export class VisitMapComponent implements OnInit {
   cityID;
   visits;
   dayPos:number = 0;
-  title: string = 'My first AGM project';
+  storeMap;
   lat: number;
   lng: number;
-  storeMap
+  zoom;
 
 
   constructor(    
@@ -48,13 +48,18 @@ export class VisitMapComponent implements OnInit {
     this.route.params.subscribe( params => {
       this.planner.getVisits(params["id"], this.dayPos).subscribe( res => {
         this.visits = res
-        
+        if(this.visits.length > 0){
+          this.storeMap.fitBounds(this.findVisitsBounds());
+        }
       })
     })
   }
   
   public storeMapReady(map){
       this.storeMap = map;
+      google.maps.event.addListener(map, 'bounds_changed', function() { 
+        this.setZoom(Math.min(15, this.getZoom())); 
+      });
       if(this.visits.length > 0){
         this.storeMap.fitBounds(this.findVisitsBounds());
       }
