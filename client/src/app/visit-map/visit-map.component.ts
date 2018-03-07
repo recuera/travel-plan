@@ -48,6 +48,7 @@ export class VisitMapComponent implements OnInit {
     this.route.params.subscribe( params => {
       this.planner.getVisits(params["id"], this.dayPos).subscribe( res => {
         this.visits = res
+        
         if(this.visits.length > 0){
           this.storeMap.fitBounds(this.findVisitsBounds());
         }
@@ -56,23 +57,24 @@ export class VisitMapComponent implements OnInit {
   }
   
   public storeMapReady(map){
-      this.storeMap = map;
-      google.maps.event.addListener(map, 'bounds_changed', function() { 
-        this.setZoom(Math.min(15, this.getZoom())); 
-      });
-      if(this.visits.length > 0){
-        this.storeMap.fitBounds(this.findVisitsBounds());
-      }
+    this.storeMap = map;
+    google.maps.event.addListener(map, 'bounds_changed', function() { 
+      this.setZoom(Math.min(15, this.getZoom())); 
+    });
+    console.log(this.visits.length)
+    if(this.visits.length == 0){
+      console.log("MAPA CÉNTRATEEEEE")
+      map.setCenter(this.plan.location)
+      map.setZoom(15);
+    }
+    else if (this.visits.length > 0){
+      this.storeMap.fitBounds(this.findVisitsBounds());
+    }
   }
 
   public findVisitsBounds(){
       let bounds:LatLngBounds = new google.maps.LatLngBounds();
-      
       for(let visit of this.visits){
-        if(!visit){
-          this.lat = this.plan.location.lat;
-          this.lng = this.plan.location.lng;
-        }
         bounds.extend(new google.maps.LatLng(visit.visit_id.location.lat, visit.visit_id.location.lng));
       }
       
