@@ -53,6 +53,7 @@ export class TripsPlannerComponent implements OnInit {
     this.route.params.subscribe( params => {
       this.tripID = params["id"];
       this.getPlan(this.tripID)
+      
     })
     
   }
@@ -61,6 +62,7 @@ export class TripsPlannerComponent implements OnInit {
     this.planner.getPlan(id).subscribe( res => {
       this.plan = res;
       this.cityID = res.city.id;
+      
     //  this.getTopVisits(this.cityID); //<-- Descomentar esto al final
     })
   }
@@ -91,7 +93,9 @@ export class TripsPlannerComponent implements OnInit {
   
   private onDrop(args) {
     let [e, el, container] = args;
-    console.log(container)
+    if(this.user._id != this.plan.author_id){
+      return;
+    }
     let visitID = e.id;
     if (!visitID){ visitID = e.childNodes[1].id};
     if(container.id != "topResults" && container.id != "searchResults"){
