@@ -42,30 +42,35 @@ export class VisitMapComponent implements OnInit {
     this.planner.getPlan(id).subscribe( res => {
       this.plan = res;
       this.cityID = res.city.id;
-      this.lat = res.location.lat;
-      this.lng = res.location.lng;
     })
   }
   getVisits(){
     this.route.params.subscribe( params => {
       this.planner.getVisits(params["id"], this.dayPos).subscribe( res => {
         this.visits = res
-        if(this.visits.length > 0){
-          this.storeMap.fitBounds(this.findVisitsBounds());
-        }
+        
       })
     })
   }
   
   public storeMapReady(map){
       this.storeMap = map;
+      if(this.visits.length > 0){
+        this.storeMap.fitBounds(this.findVisitsBounds());
+      }
   }
 
   public findVisitsBounds(){
       let bounds:LatLngBounds = new google.maps.LatLngBounds();
+      
       for(let visit of this.visits){
+        if(!visit){
+          this.lat = this.plan.location.lat;
+          this.lng = this.plan.location.lng;
+        }
         bounds.extend(new google.maps.LatLng(visit.visit_id.location.lat, visit.visit_id.location.lng));
       }
+      
       return bounds;
   }
 

@@ -30,6 +30,7 @@ export class TripsPlannerComponent implements OnInit {
     public forms: FormsModule,
     public session: SessionService
   )  {
+    this.user = this.session.getUser();
     this.session.getUserEvent().subscribe(user => this.user = user)
     dragulaService.drag.subscribe((value) => {
     //  console.log(`drag: ${value[0]}`);
@@ -93,9 +94,11 @@ export class TripsPlannerComponent implements OnInit {
   
   private onDrop(args) {
     let [e, el, container] = args;
+    console.log(this.user._id)
     if(this.user._id != this.plan.author_id){
       return;
     }
+
     let visitID = e.id;
     if (!visitID){ visitID = e.childNodes[1].id};
     if(container.id != "topResults" && container.id != "searchResults"){
