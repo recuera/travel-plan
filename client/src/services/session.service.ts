@@ -11,6 +11,7 @@ export class SessionService {
 
   BASEURL:string = environment.BASEURL;
   options:object = { withCredentials:true };
+
   constructor(private http: Http) {
     this.isLoggedIn().subscribe();
   }

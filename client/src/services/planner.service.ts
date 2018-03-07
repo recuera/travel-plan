@@ -12,7 +12,7 @@ export class PlannerService {
   options: object = { withCredentials: true };
   currentPlan:any;
 
-  // Reload the days:
+  // Reload the visit-list in the days:
   // Observable string sources
   private missionAnnouncedSource = new Subject<string>();
   // Observable string streams

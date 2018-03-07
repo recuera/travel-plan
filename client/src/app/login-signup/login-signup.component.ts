@@ -14,7 +14,19 @@ export class LoginSignupComponent implements OnInit {
   name:string;
   error:string;
   isLogin:boolean = true;
-  constructor(public session:SessionService, public router:Router, private route: ActivatedRoute) { }
+  user:any;
+  constructor(
+    public session:SessionService, 
+    public router:Router, 
+    private route: ActivatedRoute
+  ) {
+    this.session.getUserEvent().subscribe(user => {
+      this.user = user
+      if(this.user._id){
+        this.router.navigate(['trips'])
+      }
+    })
+  }
 
   ngOnInit() {
     this.route
