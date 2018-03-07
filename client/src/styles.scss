@@ -12,7 +12,9 @@ body {
     cursor: pointer;
   }
 }
-
+.serif{
+  font-family: $serif-font;
+}
 /*TRIP DETAIL*/
 
 .main-container {
@@ -140,6 +142,24 @@ body {
   }
   span {
     padding-right: 10px;
+  }
+  .num{
+    font-size: 20px;
+  }
+  .time{
+    font-weight: 600;
+    letter-spacing: 2px;
+    padding-right: 5px;
+  }
+}
+.visit.map-view{
+  justify-content: flex-start;
+  >div{
+    display: flex;
+    align-items: center;
+  }
+  .time{
+    padding-left: 14px;
   }
 }
 agm-map {

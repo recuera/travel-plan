@@ -55,6 +55,7 @@ export class VisitMapComponent implements OnInit {
       })
     })
   }
+
   
   public storeMapReady(map){
     this.storeMap = map;
@@ -64,8 +65,8 @@ export class VisitMapComponent implements OnInit {
     console.log(this.visits.length)
     if(this.visits.length == 0){
       console.log("MAPA CÉNTRATEEEEE")
-      map.setCenter(this.plan.location)
-      map.setZoom(15);
+      this.storeMap.setCenter(this.plan.location)
+      this.storeMap.setZoom(15);
     }
     else if (this.visits.length > 0){
       this.storeMap.fitBounds(this.findVisitsBounds());

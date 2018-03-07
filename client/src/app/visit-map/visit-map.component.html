@@ -12,14 +12,17 @@
          <button *ngFor="let d of plan.dates, let i = index" (click)="getDayRoute(i)">{{d | date: "EEE d"}}</button>
       </div>
       <div *ngIf="visits">
-        <div *ngFor="let v of visits, let i = index" [id]="i" class="visit" [style.height]="getHeight(v.visit_id.duration)" [style.background]="getBackground(v.visit_id.duration)">
-            <span>{{i +1}} </span><span>{{v.visit_id.title}} - {{v.visit_id.duration / 3600}}h</span>
+        <div *ngFor="let v of visits, let i = index" [id]="i" class="visit map-view" [style.height]="getHeight(v.visit_id.duration)" [style.background]="getBackground(v.visit_id.duration)">       
+            <span class="num">{{i + 1}} </span>
+            <i class="fa fa-caret-right"></i>
+            <span class="time"> {{v.visit_id.duration / 3600}}h - </span>
+            <span>{{v.visit_id.title}}</span>
         </div>
       </div>
     </div>
   </div>
   <div class="right-container" *ngIf="visits">
-    <agm-map (mapReady)="storeMapReady($event)" >
+    <agm-map [latitude]="lat" [longitude]="lng" [zoom]="15" (mapReady)="storeMapReady($event)" >
         <agm-marker *ngFor="let v of visits, let i = index" 
         [latitude]="v.visit_id.location.lat" 
         [longitude]="v.visit_id.location.lng" 

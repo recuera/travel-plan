@@ -13,6 +13,14 @@
   justify-content: space-between;
   align-items: center;
   box-shadow: 0px -6px 8px 9px rgba(0,0,0,0.2);
+  .brand{
+    font-size: 24px;
+    font-weight: 200;
+    svg{
+      margin: 0 3px;
+      font-size: 20px;
+    }
+  }
   *{
     margin: 0 10px;
   }
