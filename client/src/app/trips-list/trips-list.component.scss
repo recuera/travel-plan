@@ -1,7 +1,8 @@
 @import "../../_variables.scss";
 
-h1{
-  margin: 40px 0;
+h1 {
+  margin: 40px 10px;
+  font-family: $serif-font;
 }
 
 .main-container {
@@ -12,23 +13,51 @@ h1{
 }
 
 .trip-card {
-  width: 30%;
+  width: calc(33.2% - 30px);
   height: 300px;
   vertical-align: top;
   display: inline-block;
   background: $grey5;
   margin: 15px;
   .card-img {
-    height: 200px;
+    height: 300px;
     overflow: hidden;
     img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      transition: all ease 0.3s;
     }
   }
-  .card-data{
+  .card-data {
     text-align: left;
     padding: 20px;
+    box-sizing: border-box;
+    color: $white;
+    background: rgba(54, 130, 138, 0.89);
+    a {
+      text-decoration: none;
+    }
   }
+  a:hover {
+    img {
+      transform: scale(1.2);
+      opacity: .8;
+    }
+  }
+}
+.trip {
+  a {
+    position: relative;
+    display: block;
+    color: $white;
+    .card-data {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+    }
+  }
+}
+.new-trip {
 }

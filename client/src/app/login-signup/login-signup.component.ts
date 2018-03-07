@@ -54,6 +54,10 @@ export class LoginSignupComponent implements OnInit {
   }
 
   signup(){
+    if(!this.username || !this.password || !this.name){
+      this.error = "Please, fill all the inputs!"
+      return;
+    }
     console.log(this.username,this.password, this.name)
     this.session.signup(this.username,this.password, this.name)
     .catch(e => this.error = e)
@@ -63,7 +67,7 @@ export class LoginSignupComponent implements OnInit {
         this.router.navigate(['trips'])
       }
       else{
-        this.router.navigate(['auth/login'])
+        this.router.navigate(['auth/signup'])
       }
       });
   }

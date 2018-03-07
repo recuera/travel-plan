@@ -18,6 +18,6 @@
       <button *ngIf="isLogin" (click)="login()"> login </button>
       <button *ngIf="!isLogin" (click)="signup()"> signup </button>
     </form>
-    <p *ngIf="error" class="error"> {{ error }} </p>
+    <div *ngIf="error" class="error-box"> {{ error }} </div>
   </div>
 </div>

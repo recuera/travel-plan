@@ -1,4 +1,4 @@
-<h3>{{day.day | date: "EEE d"}}</h3>
+<h3 class="serif">{{day.day | date: "EEE d"}}</h3>
 <div>
   <app-visit-list  class="day-timeline" [id]="day.index" [dragula]='"drag-container"' [dragulaModel]='visits' [dayPos]="day"></app-visit-list>
 </div>

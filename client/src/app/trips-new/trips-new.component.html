@@ -1,6 +1,6 @@
 <div class="main-container">
   <div class="form-container">
-    <h2>New Trip</h2>
+    <h2 class="serif">New Trip</h2>
     <form>
       <div>
         <label for="country">Country</label>
@@ -23,7 +23,7 @@
         <input type="date" [(ngModel)]="end" name="end" min="{{start}}" />
       </div>
       <button (click)="newTrip()"> Create Trip</button>
-      <p class="error" *ngIf="error"> {{ error }} </p>
+      <div class="error-box" *ngIf="error"> {{ error }} </div>
     </form>
   </div>
 </div>

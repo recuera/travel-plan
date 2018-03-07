@@ -1,6 +1,6 @@
 <div class="main-container">
   <h1>Your trips</h1>
-  <div class="trip-card" *ngFor="let t of trips">
+  <div class="trip-card trip" *ngFor="let t of trips">
     <a [routerLink]="[t._id]">
       <div class="card-img">
         <img src="{{t.img}}" alt="">
@@ -13,7 +13,7 @@
       </div>
     </a>
   </div>
-  <div class="trip-card">
+  <div class="trip-card new-trip">
     <div class="card-data">
       <a [routerLink]="['new']">
         <h1>+</h1>
