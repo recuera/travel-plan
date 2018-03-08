@@ -62,9 +62,7 @@ export class VisitMapComponent implements OnInit {
     google.maps.event.addListener(map, 'bounds_changed', function() { 
       this.setZoom(Math.min(15, this.getZoom())); 
     });
-    console.log(this.visits.length)
     if(this.visits.length == 0){
-      console.log("MAPA CÉNTRATEEEEE")
       this.storeMap.setCenter(this.plan.location)
       this.storeMap.setZoom(15);
     }

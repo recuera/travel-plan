@@ -94,7 +94,6 @@ export class TripsPlannerComponent implements OnInit {
   
   private onDrop(args) {
     let [e, el, container] = args;
-    console.log(this.user._id)
     if(this.user._id != this.plan.author_id){
       return;
     }

@@ -26,7 +26,6 @@
         <agm-marker *ngFor="let v of visits, let i = index" 
         [latitude]="v.visit_id.location.lat" 
         [longitude]="v.visit_id.location.lng" 
-        
         [iconUrl]="getIcon(v.visit_id.duration)"
         [label]="{
           text: (i+1 + ''),
