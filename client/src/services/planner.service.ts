@@ -14,7 +14,7 @@ export class PlannerService {
 
   // Reload the visit-list in the days:
   private missionAnnouncedSource = new Subject<string>();
-  missionAnnounced$ = this.missionAnnouncedSource.asObservable();
+  missionAnnounced = this.missionAnnouncedSource.asObservable();
 
   announceMission(mission: string) {
     this.missionAnnouncedSource.next(mission);

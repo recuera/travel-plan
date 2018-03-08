@@ -22,12 +22,10 @@ export class VisitListComponent implements OnInit {
     public router: Router,
     public route: ActivatedRoute
   ) { 
-    this.subscription = planner.missionAnnounced$.subscribe(
+    this.subscription = planner.missionAnnounced.subscribe(
       mission => {
-        console.log(mission)
         this.getVisits()
     });
-
   }
   get dayPos(): any {
     return this._dayPos
