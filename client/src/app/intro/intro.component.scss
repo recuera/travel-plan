@@ -1,10 +1,32 @@
 @import "../../_variables.scss";
 
-.intro{
+.hero {
   width: 100%;
-  min-height: calc(100vh - 130px);
-  background-color: $grey4;
-  //background-image: url("assets/img/map.jpg");
+  height: calc(100vh - 130px);
+  background-image: url(../../assets/img/hero.jpg);
   background-position: 50% 50%;
   background-size: cover;
+  background-blend-mode: soft-light;
+  background-color: rgba(219, 255, 250, 0.2);
+}
+.title{
+  margin-top: 240px;
+  background-color: rgba(5, 20, 20, 0.6);
+  color: rgba(255, 255, 255, 0.95);
+  font-family: $serif-font;
+  text-align: center;
+  padding: 40px;
+  position: absolute;
+  width: 100%;
+  h1 {
+    font-size: 80px;
+    svg{
+      font-size: 70px;
+      margin-right: 10px;
+    }
+  }
+  h3{
+    margin-top: 30px;
+    font-size: 30px;
+  }
 }
