@@ -20,6 +20,7 @@ export class LoginSignupComponent implements OnInit {
     public router:Router, 
     private route: ActivatedRoute
   ) {
+    this.error = null;
     this.session.getUserEvent().subscribe(user => {
       this.user = user
       if(this.user._id){
@@ -29,6 +30,7 @@ export class LoginSignupComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this.route
       .params
       .subscribe(params => {

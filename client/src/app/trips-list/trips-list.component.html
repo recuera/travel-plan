@@ -9,18 +9,16 @@
         <h3>
           {{t.city.name}}
         </h3>
-        <p>{{t.dates[0] | date : "d MMM" }} - {{t.dates[t.dates.length -1] | date : "d MMM, y"}}</p>
+        <p><i class="fa fa-calendar-alt"></i> {{t.dates[0] | date : "d MMM" }} - {{t.dates[t.dates.length -1] | date : "d MMM, y"}}</p>
       </div>
     </a>
   </div>
   <div class="trip-card new-trip">
-    <div class="card-data">
       <a [routerLink]="['new']">
-        <h1>+</h1>
+        <h1><i class="fa fa-plus-circle"></i></h1>
         <h3>
           New Trip!
         </h3>
       </a>
-    </div>
   </div>
 </div>

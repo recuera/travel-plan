@@ -59,12 +59,6 @@ button:focus{
   margin: 0 auto;
   background: $grey5;
   padding: 30px;
-  position: absolute;
-  width: 100%;
-  left: 50vw;
-  top: 50vw;
-  margin-top: -425px;
-  margin-left: -230px;
   box-sizing: border-box;
   div,input,button, select{
     width: 100%;
@@ -92,6 +86,7 @@ button:focus{
 .serif{
   font-family: $serif-font;
 }
+
 /*TRIP DETAIL*/
 
 .main-container {
@@ -212,7 +207,7 @@ button:focus{
   line-height: 16px;
   cursor: move;
   cursor: grab;
-  box-shadow: 0px 3px 10px 0px #ffeaee;;
+  box-shadow: 0px 3px 10px 0px $primary-tp1;
   font-size: 14px;
   a {
     padding-left: 10px;
