@@ -11,7 +11,7 @@ h1 {
   min-height: calc(100vh - 130px);
   box-sizing: border-box;
   padding: 30px 10px;
-  background-color: $grey5;
+  background-color: $white;
 }
 
 .trip-card {
@@ -19,7 +19,6 @@ h1 {
   height: 300px;
   vertical-align: top;
   display: inline-block;
-  background: $grey5;
   margin: 15px;
   .card-img {
     height: 300px;
@@ -81,7 +80,7 @@ h1 {
     text-decoration: none;
     display: block;
     height: 100%;
-    background-color: rgba(54, 130, 138, .2);
+    background-color: rgba(54, 130, 138, .1);
     transition: all ease 0.3s;
     .circle {
       border-radius: 50%;
@@ -93,21 +92,21 @@ h1 {
       margin-bottom: 10px;
       font-size: 60px;
       line-height: 140px;
-      background-color: rgba(255, 255, 255, 0.7);
+      background-color: rgba(255, 255, 255, .7);
       transition: all ease 0.3s;
     }
     h3 {
       font-size: 30px;
     }
     &:hover {
-      background-color: rgba(54, 130, 138, .1);
+      background-color: rgba(54, 130, 138, 0.05);
       .circle {
         width: 160px;
         height: 160px;
         line-height: 160px;
         font-size: 70px;
         border-color: $primaryh;
-        background-color: rgba(54, 130, 138, .1);
+        background-color: rgba(54, 130, 138, .05);
       }
     }
   }
