@@ -31,7 +31,7 @@ export class TripsNewComponent implements OnInit {
     if(cities[this.countryID]){
       this.cityList =  Object.keys(cities[this.countryID]);
     } else{
-      this.error = "Please select another country"
+      this.error = "Sorry, we don't support this country (yet!)"
     }
   }
   newTrip(){

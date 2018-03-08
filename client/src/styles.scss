@@ -13,21 +13,56 @@ body {
   }
 }
 
-input{
+input,select{
   box-sizing: border-box;
   float: left;
   height: 40px;
   width: calc(100% - 40px);
   margin-bottom: 20px;
   border: 2px solid rgba(54, 130, 138, 0.2);
+  border-radius: 0;
   font-size: 14px;
   padding: 0 5px;
 }
-input:focus{
+input:focus, select:focus{
   border-color: $primary;
   outline: none;
 }
-
+select {
+  -webkit-appearance: none; 
+  appearance: none;
+  background-color: $white;
+  text-indent: 0.01px;
+  text-overflow: '';
+  padding: 0 10px;
+  /* Targetting Webkit browsers only. FF will show the dropdown arrow with so much padding.
+  via: https://cssdeck.com/labs/styling-select-box-with-css3 */
+  @media screen and (-webkit-min-device-pixel-ratio:0) {
+    padding-right:1em;
+  }
+  border-radius: 0;
+  position: relative;
+}
+.select{
+  label {
+    position: relative;
+    display: inline-block;
+    &:after {
+      display: block;
+      content: "▾";
+      font-size: 24px;
+      width: 20px;
+      position: absolute;
+      height: 20px;
+      margin-top: 16px;
+      margin-right: 10px;
+      right: 0;
+      color: $primary;
+      pointer-events: none;
+      z-index: 99999;
+    }
+  }  
+}
 button{
   margin-top: 30px;
   box-sizing: border-box;
@@ -43,6 +78,16 @@ button:focus{
   cursor: pointer;
   background: $primaryh;
 }
+::-webkit-datetime-edit { 
+  padding: 1em; 
+}
+::-webkit-inner-spin-button { display: none; }
+::-webkit-calendar-picker-indicator { 
+  color: $primary;
+  background: $white;
+  transform:scale(1.5,1);
+  padding-right: 10px;
+}
 
 .error-box{
   clear: both;
@@ -57,9 +102,18 @@ button:focus{
 .form-container{
   max-width: 460px;
   margin: 0 auto;
-  background: $grey5;
   padding: 30px;
   box-sizing: border-box;
+  margin-top: 100px;
+  background: rgba(255,255,255,.89);
+  box-shadow: 0px 3px 20px 2px rgba(5, 20, 20, 0.4);
+  h2{
+    font-family: $serif-font;
+    color: $grey2;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 30px;
+  }
   div,input,button, select{
     width: 100%;
     box-sizing: border-box;

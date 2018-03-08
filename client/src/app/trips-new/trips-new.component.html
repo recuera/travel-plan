@@ -1,14 +1,14 @@
 <div class="main-container">
   <div class="form-container">
-    <h2 class="serif">New Trip</h2>
+    <h2 class="serif">Where are you going?</h2>
     <form>
-      <div>
+      <div class="select">
         <label for="country">Country</label>
         <select type="text" [(ngModel)]="country" name="country" (change)="updateCities()">
           <option *ngFor="let c of countryList">{{c}}</option>
         </select>
       </div>
-      <div *ngIf="cityList">
+      <div *ngIf="cityList" class="select">
         <label for="country">City</label>
         <select type="text" [(ngModel)]="city" name="country">
           <option *ngFor="let c of cityList">{{c}}</option>
@@ -22,7 +22,7 @@
         <label for="end">End</label>
         <input type="date" [(ngModel)]="end" name="end" min="{{start}}" />
       </div>
-      <button (click)="newTrip()"> Create Trip</button>
+      <button (click)="newTrip()">Create Trip</button>
       <div class="error-box" *ngIf="error"> {{ error }} </div>
     </form>
   </div>
