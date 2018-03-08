@@ -9,7 +9,7 @@
     <div class="content" *ngIf="plan">
         <h2>{{plan.city.name}}<small> - {{plan.dates[0] | date: "MMM yyyy" }}</small></h2>
       <div class="map-dates" >
-         <button *ngFor="let d of plan.dates, let i = index" (click)="getDayRoute(i)">{{d | date: "EEE d"}}</button>
+         <button [id]="i" [style.background]="getBtnBackground(i)"  *ngFor="let d of plan.dates, let i = index" (click)="getDayRoute(i)">{{d | date: "EEE d"}}</button>
       </div>
       <div *ngIf="visits">
         <div *ngFor="let v of visits, let i = index" [id]="i" class="visit map-view" [style.height]="getHeight(v.visit_id.duration)" [style.background]="getBackground(v.visit_id.duration)">       

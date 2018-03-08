@@ -81,6 +81,7 @@ a.btn:hover,
 a.btn:focus{
   cursor: pointer;
   background: $primaryh;
+  outline: none;
 }
 a.btn{
   display: inline-block;

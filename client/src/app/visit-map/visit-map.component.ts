@@ -22,6 +22,7 @@ export class VisitMapComponent implements OnInit {
   lat: number;
   lng: number;
   zoom;
+ // selected:number = 0;
 
 
   constructor(    
@@ -48,7 +49,6 @@ export class VisitMapComponent implements OnInit {
     this.route.params.subscribe( params => {
       this.planner.getVisits(params["id"], this.dayPos).subscribe( res => {
         this.visits = res
-        
         if(this.visits.length > 0){
           this.storeMap.fitBounds(this.findVisitsBounds());
         }
@@ -101,6 +101,12 @@ export class VisitMapComponent implements OnInit {
   getDayRoute(dayPos){
     this.dayPos = dayPos;
     this.getVisits()
+  }
+
+  getBtnBackground(i){
+    if(i == this.dayPos){
+      return  "#4d9fa8";
+    }
   }
 
   getHeight(sec){
