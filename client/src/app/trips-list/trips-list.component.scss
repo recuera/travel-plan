@@ -111,3 +111,15 @@ h1 {
     }
   }
 }
+
+
+@media (max-width: 800px) {
+  .trip-card {
+    width: calc(50% - 30px);
+  }
+}
+@media (max-width: 480px) {
+  .trip-card {
+    width: calc(100% - 30px);
+  }
+}
