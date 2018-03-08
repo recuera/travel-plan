@@ -13,9 +13,7 @@ export class PlannerService {
   currentPlan:any;
 
   // Reload the visit-list in the days:
-  // Observable string sources
   private missionAnnouncedSource = new Subject<string>();
-  // Observable string streams
   missionAnnounced$ = this.missionAnnouncedSource.asObservable();
 
   announceMission(mission: string) {

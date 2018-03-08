@@ -64,7 +64,7 @@ export class TripsPlannerComponent implements OnInit {
       this.plan = res;
       this.cityID = res.city.id;
       
-    //  this.getTopVisits(this.cityID); //<-- Descomentar esto al final
+      this.getTopVisits(this.cityID); //<-- Descomentar esto al final
     })
   }
 
