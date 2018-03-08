@@ -22,7 +22,6 @@ export class VisitMapComponent implements OnInit {
   lat: number;
   lng: number;
   zoom;
- // selected:number = 0;
 
 
   constructor(    
@@ -60,11 +59,11 @@ export class VisitMapComponent implements OnInit {
   public storeMapReady(map){
     this.storeMap = map;
     google.maps.event.addListener(map, 'bounds_changed', function() { 
-      this.setZoom(Math.min(15, this.getZoom())); 
+      this.setZoom(Math.min(17, this.getZoom())); 
     });
     if(this.visits.length == 0){
       this.storeMap.setCenter(this.plan.location)
-      this.storeMap.setZoom(15);
+      this.storeMap.setZoom(17);
     }
     else if (this.visits.length > 0){
       this.storeMap.fitBounds(this.findVisitsBounds());

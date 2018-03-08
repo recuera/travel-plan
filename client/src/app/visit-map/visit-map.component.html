@@ -24,7 +24,7 @@
   <div class="right-container" *ngIf="visits">
 
 
-    <agm-map [latitude]="lat" [longitude]="lng" [zoom]="15" (mapReady)="storeMapReady($event)" >
+    <agm-map [latitude]="lat" [longitude]="lng" [zoom]="17" (mapReady)="storeMapReady($event)" >
       <agm-marker *ngFor="let v of visits, let i = index" 
         [latitude]="v.visit_id.location.lat" [longitude]="v.visit_id.location.lng" 
         [iconUrl]="getIcon(v.visit_id.duration)"
