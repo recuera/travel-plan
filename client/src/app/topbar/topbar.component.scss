@@ -1,5 +1,6 @@
 @import "../../_variables.scss";
 .topbar{
+  z-index: 99999;
   width: 100%;
   height: 50px;
   position: fixed;
