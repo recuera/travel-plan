@@ -21,6 +21,14 @@
       margin: 0 3px;
       font-size: 20px;
     }
+    a{
+    
+      &:hover{
+        border: none;
+        opacity: .8;
+      };
+      
+    }
   }
   *{
     margin: 0 10px;
@@ -28,6 +36,7 @@
   a{
     color: $white;
     text-decoration: none;
+    transition: all ease .3s;
   }
   a:hover{
     cursor: pointer;
