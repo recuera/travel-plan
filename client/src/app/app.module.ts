@@ -22,6 +22,7 @@ import { CommonModule } from '@angular/common';
 import { VisitMapComponent } from './visit-map/visit-map.component';
 import { AgmCoreModule } from '@agm/core';
 import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
+import { AgmMapComponent } from './agm-map/agm-map.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
     TripsPlannerComponent,
     VisitListComponent,
     VisitDayComponent,
-    VisitMapComponent   
+    VisitMapComponent,
+    AgmMapComponent   
   ],
   imports: [
     CommonModule,

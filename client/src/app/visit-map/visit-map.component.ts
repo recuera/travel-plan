@@ -5,7 +5,7 @@ import { durationColors } from "../../interfaces/duration-colors";
 import { GoogleMapsAPIWrapper, AgmMap, LatLngBounds, LatLngBoundsLiteral} from '@agm/core';
 import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 
-declare var google: any;
+
 
 @Component({
   selector: 'app-visit-map',
@@ -48,51 +48,8 @@ export class VisitMapComponent implements OnInit {
     this.route.params.subscribe( params => {
       this.planner.getVisits(params["id"], this.dayPos).subscribe( res => {
         this.visits = res
-        if(this.visits.length > 0){
-          this.storeMap.fitBounds(this.findVisitsBounds());
-        }
       })
     })
-  }
-
-  
-  public storeMapReady(map){
-    this.storeMap = map;
-    google.maps.event.addListener(map, 'bounds_changed', function() { 
-      this.setZoom(Math.min(17, this.getZoom())); 
-    });
-    if(this.visits.length == 0){
-      this.storeMap.setCenter(this.plan.location)
-      this.storeMap.setZoom(17);
-    }
-    else if (this.visits.length > 0){
-      this.storeMap.fitBounds(this.findVisitsBounds());
-    }
-  }
-
-  public findVisitsBounds(){
-      let bounds:LatLngBounds = new google.maps.LatLngBounds();
-      for(let visit of this.visits){
-        bounds.extend(new google.maps.LatLng(visit.visit_id.location.lat, visit.visit_id.location.lng));
-      }
-      
-      return bounds;
-  }
-
-  public getIcon(sec){
-    let num = 7200
-    if(sec < 7200 ){
-      num = 7200;
-    } else if(sec < 10800 ){
-      num = 10800;
-    } else if(sec < 14400 ){
-      num = 14400;
-    } else if(sec < 18000 ){
-      num = 18000;
-    } else{
-      num = 21600;
-    }
-    return `../../assets/img/marker-${num}.png`
   }
 
   getDayRoute(dayPos){

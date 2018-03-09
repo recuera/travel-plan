@@ -1,0 +1,25 @@
+<agm-map [latitude]="lat" [longitude]="lng" [zoom]="17" (mapReady)="storeMapReady($event)" >
+  <agm-marker *ngFor="let v of visits, let i = index" 
+    [latitude]="v.visit_id.location.lat" [longitude]="v.visit_id.location.lng" 
+    [iconUrl]="getIcon(v.visit_id.duration)"
+    [label]="{
+      text: (i+1 + ''),
+      color: '#fff',
+      fontSize: '20px',
+      fontWeight: 'bold',
+      fontFamily:'lato, sans-serif'
+    }" >
+    <agm-snazzy-info-window [maxWidth]="300" [closeWhenOthersOpen]="true">
+      <ng-template>
+        <img [src]="v.visit_id.img" alt="">
+        <div class="info-window-content">
+          <h4>{{v.visit_id.title}}</h4>
+          <div *ngIf="v.opening[i][0]" class="info-open">
+            <i class="fa fa-clock"></i>
+            <p> {{v.opening[i][0].opening}}<br>{{v.opening[i][0].closing}}</p>
+          </div>
+        </div>
+      </ng-template>
+    </agm-snazzy-info-window>
+  </agm-marker>
+</agm-map>
